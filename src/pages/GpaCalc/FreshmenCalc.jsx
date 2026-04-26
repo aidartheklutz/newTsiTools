@@ -186,6 +186,7 @@ export function FreshmenCalc() {
                 {renderRow("Астрономия", springSubjects[16])}
               </tbody>
             </table>
+            <GPAField value={calcGPA(springSubjects)} />
           </div>
         </div>
       </div>
