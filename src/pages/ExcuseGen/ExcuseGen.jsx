@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import NavBar from "../../components/NavBar";
 import "./ExcuseGen.css";
 
 let placeholderText = "Вкратце объясните ситуацию";
@@ -256,34 +257,39 @@ export function ExcuseGen() {
   const [blockRequest, setBlockRequest] = useState(false);
 
   return (
-    <div className="wrapper">
-      <div className="inputs-wrapper">
-        <h2>Ваше полное имя</h2>
+    <>
+      <NavBar />
+      <div className="content">
+        <div className="wrapper">
+          <div className="inputs-wrapper">
+            <h2>Ваше полное имя</h2>
 
-        <div>
-          <NameInput setName={setName} />
-        </div>
-        <br />
-        <div>
-          <h2>Что произошло?</h2>
-          <h3>Вкратце объясните ситуацию</h3>
-        </div>
-        <div>
-          <QueryInput
-            setPrompt={setPrompt}
-            prompt={prompt}
-            name={name}
-            setAiResponse={setAiResponse}
-            aiResponse={aiResponse}
-            setShow={setShow}
-            blockRequest={blockRequest}
-            setBlockRequest={setBlockRequest}
-          />
+            <div>
+              <NameInput setName={setName} />
+            </div>
+            <br />
+            <div>
+              <h2>Что произошло?</h2>
+              <h3>Вкратце объясните ситуацию</h3>
+            </div>
+            <div>
+              <QueryInput
+                setPrompt={setPrompt}
+                prompt={prompt}
+                name={name}
+                setAiResponse={setAiResponse}
+                aiResponse={aiResponse}
+                setShow={setShow}
+                blockRequest={blockRequest}
+                setBlockRequest={setBlockRequest}
+              />
+            </div>
+          </div>
+          <div className="ai-output">
+            <Sheet aiResponse={aiResponse} setBlockRequest={setBlockRequest} />
+          </div>
         </div>
       </div>
-      <div className="ai-output">
-        <Sheet aiResponse={aiResponse} setBlockRequest={setBlockRequest} />
-      </div>
-    </div>
+    </>
   );
 }
