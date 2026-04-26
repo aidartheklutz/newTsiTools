@@ -1,0 +1,51 @@
+export const mainPages = [
+  {
+    id: crypto.randomUUID(),
+    title: "Калькулятор GPA",
+    icon: <i class="bi bi-calculator"></i>,
+    description: "Быстро и удобно рассчитайте свой GPA",
+    file: "GpaCalc",
+    path: "gpa",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Делитель на команды",
+    icon: <i class="bi bi-people-fill"></i>,
+    description:
+      "Автоматически разделите группу людей на нужное число подгрупп",
+    file: "TeamDivider",
+    path: "teamdiv",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Генератор QR",
+    icon: <i class="bi bi-qr-code-scan"></i>,
+    description: "Легко создайте QR-код для ссылки или текста",
+    file: "QrGen",
+    path: "qrgen",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Генератор объяснительных",
+    icon: <i className="bi bi-file-earmark-font-fill"></i>,
+    description: "ИИ для создания формального текста из простого объяснения",
+    file: "ExcuseGen",
+    path: "excusegen",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Счётчик слов",
+    icon: <i className="bi bi-text-wrap"></i>,
+    description: "Простая программа для подсчёта слов в вставленном тексте",
+    file: "WordCounter",
+    path: "wordcounter",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Аффирмации",
+    icon: <i className="bi bi-person-heart"></i>,
+    description: "Небольшие мотивирующие цитаты для поднятия духа",
+    file: "Affirmations",
+    path: "affirmations",
+  },
+];

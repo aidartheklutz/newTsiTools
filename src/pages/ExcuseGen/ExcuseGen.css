@@ -1,0 +1,95 @@
+.sheet-of-paper {
+  font-family: "Kurale", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.show {
+  display: block;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 5%
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.query-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.query-input-button {
+  align-self: end;
+  width: 40%;
+  border: none;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.query-input, .name-input {
+  width: calc(100% - 40px);
+  border-radius: 20px;
+  height: 90px;
+  font-size: 20px;
+  padding: 15px;
+}
+
+.name-input {
+  height: 20px;
+  width: fit-content;
+}
+
+.inputs-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--accent);
+  max-width: 30%;
+  padding: 20px;
+  border-radius: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.sheet-of-paper {
+  color: var(--background-color);
+  padding: 30px;
+  background-image: url('../../assets/paper.jpg');
+  background-repeat: repeat;
+  min-height: 30vh;
+  border-radius: 30px;
+  font-size: 18px;
+  max-width: 80%;
+  word-break:keep-all
+}
+
+@media (max-width: 1080px) {
+  .input-wrapper {
+    max-width: max-content;
+  }
+  .name-input {
+    width: calc(100% - 35px);
+  }
+}
+
+@media (max-width: 896px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .inputs-wrapper {
+    max-width: 100%;
+  }
+  .sheet-of-paper {
+    max-width: 100%;
+  }
+}

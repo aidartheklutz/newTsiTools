@@ -1,0 +1,72 @@
+.calc-table-wrapper {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.calc-table-wrapper h2 {
+  margin-bottom: 10px;
+}
+
+.calc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--accent);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.calc-table th {
+  background-color: var(--accent-1);
+  padding: 10px;
+  text-align: left;
+}
+
+.calc-table td {
+  padding: 8px;
+  border-top: 1px solid var(--background-color);
+}
+
+.calc-table input {
+  width: 100%;
+  padding: 6px;
+  background-color: var(--background-color);
+  color: var(--white);
+  border: 1px solid var(--link);
+  border-radius: 6px;
+}
+
+.calc-table input:focus {
+  outline: none;
+  border-color: var(--link-1);
+}
+
+.grade-col {
+  width: 120px;
+}
+
+.calc-table select {
+  width: 100%;
+  padding: 6px;
+  background-color: var(--background-color);
+  color: var(--white);
+  border: 1px solid var(--link);
+  border-radius: 6px;
+}
+
+.gpa-output {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--accent-1);
+  border-radius: 10px;
+  width: fit-content;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .calc-table th,
+  .calc-table td {
+    font-size: 14px;
+    padding: 6px;
+  }
+}
