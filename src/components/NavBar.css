@@ -87,7 +87,7 @@
 #dropdownMenu {
     position: absolute;
     top: 30px;
-    right: -5vw;
+    right: 1vw;
     background-color: var(--accent);
     padding: 1.5rem 2rem;
     /* border-radius: 12px; */
