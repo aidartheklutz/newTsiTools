@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./background.css";
 
 export function SecretCode() {
   const [history, setHistory] = useState([
@@ -58,86 +57,100 @@ export function SecretCode() {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        position: "fixed",
+        inset: 0,
         background: "#000",
         color: "#00ff00",
         fontFamily: "monospace",
         display: "flex",
         justifyContent: "center",
         padding: 20,
+        overflow: "auto",
       }}
     >
-      <div style={{ width: "100%", maxWidth: 800 }}>
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 20 }}>
-          <h1 style={{ margin: 0, letterSpacing: 3 }}>
-            KINGSMAN: FINAL CHALLENGE
-          </h1>
-          <div style={{ opacity: 0.6, fontSize: 12 }}>
-            TERMINAL v6.7 • CLASSIFIED ACCESS
-          </div>
-        </div>
-
-        {/* Terminal */}
-        <div
-          ref={terminalRef}
-          style={{
-            background: "#050505",
-            border: "1px solid #00aa00",
-            padding: 16,
-            height: "60vh",
-            overflowY: "auto",
-            lineHeight: 1.6,
-            whiteSpace: "pre-wrap",
-          }}
-        >
-          {history.map((line, i) => (
-            <div key={i} style={{ marginBottom: line ? 4 : 12 }}>
-              {line}
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "#000",
+          color: "#00ff00",
+          fontFamily: "monospace",
+          display: "flex",
+          justifyContent: "center",
+          padding: 20,
+        }}
+      >
+        <div style={{ width: "100%", maxWidth: 800 }}>
+          {/* Header */}
+          <div style={{ textAlign: "center", marginBottom: 20 }}>
+            <h1 style={{ margin: 0, letterSpacing: 3 }}>
+              KINGSMAN: FINAL CHALLENGE
+            </h1>
+            <div style={{ opacity: 0.6, fontSize: 12 }}>
+              TERMINAL v6.7 • CLASSIFIED ACCESS
             </div>
-          ))}
+          </div>
+
+          {/* Terminal */}
+          <div
+            ref={terminalRef}
+            style={{
+              background: "#050505",
+              border: "1px solid #00aa00",
+              padding: 16,
+              height: "60vh",
+              overflowY: "auto",
+              lineHeight: 1.6,
+              whiteSpace: "pre-wrap",
+            }}
+          >
+            {history.map((line, i) => (
+              <div key={i} style={{ marginBottom: line ? 4 : 12 }}>
+                {line}
+              </div>
+            ))}
+
+            {isUnlocked && (
+              <div style={{ marginTop: 20, color: "#00ff88" }}>
+                ДОСТУП РАЗРЕШЁН
+              </div>
+            )}
+          </div>
+
+          {/* Input */}
+          {!isUnlocked && (
+            <form
+              onSubmit={handleSubmit}
+              style={{
+                display: "flex",
+                marginTop: 10,
+                border: "1px solid #00aa00",
+                background: "#050505",
+                padding: "10px",
+              }}
+            >
+              <span style={{ marginRight: 10 }}>{">"}</span>
+              <input
+                ref={inputRef}
+                value={currentInput}
+                onChange={(e) => setCurrentInput(e.target.value)}
+                style={{
+                  flex: 1,
+                  background: "transparent",
+                  border: "none",
+                  outline: "none",
+                  color: "#00ff00",
+                  fontFamily: "monospace",
+                }}
+              />
+            </form>
+          )}
 
           {isUnlocked && (
-            <div style={{ marginTop: 20, color: "#00ff88" }}>
-              ДОСТУП РАЗРЕШЁН
+            <div style={{ marginTop: 10, textAlign: "center" }}>
+              ПОЗДРАВЛЯЕМ, АГЕНТ. ВЫПОЛНИТЕ ДЕЙСТВИЕ ИЗ ЗАГАДКИ.
             </div>
           )}
         </div>
-
-        {/* Input */}
-        {!isUnlocked && (
-          <form
-            onSubmit={handleSubmit}
-            style={{
-              display: "flex",
-              marginTop: 10,
-              border: "1px solid #00aa00",
-              background: "#050505",
-              padding: "10px",
-            }}
-          >
-            <span style={{ marginRight: 10 }}>{">"}</span>
-            <input
-              ref={inputRef}
-              value={currentInput}
-              onChange={(e) => setCurrentInput(e.target.value)}
-              style={{
-                flex: 1,
-                background: "transparent",
-                border: "none",
-                outline: "none",
-                color: "#00ff00",
-                fontFamily: "monospace",
-              }}
-            />
-          </form>
-        )}
-
-        {isUnlocked && (
-          <div style={{ marginTop: 10, textAlign: "center" }}>
-            ПОЗДРАВЛЯЕМ, АГЕНТ. ВЫПОЛНИТЕ ДЕЙСТВИЕ ИЗ ЗАГАДКИ.
-          </div>
-        )}
       </div>
     </div>
   );
