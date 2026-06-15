@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router";
+import { Analytics } from "@vercel/analytics/react";
 import { HomePage } from "./pages/HomePage/HomePage";
 import GpaCalc from "./pages/GpaCalc/GpaCalc";
 import { FreshmenCalc } from "./pages/GpaCalc/FreshmenCalc";
@@ -10,14 +11,17 @@ import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
-    <Routes>
-      <Route index element={<HomePage />} />
-      <Route path="gpa" element={<GpaCalc />} />
-      <Route path="gpa/freshmen" element={<FreshmenCalc />} />
-      <Route path="excusegen" element={<ExcuseGen />} />;
-      <Route path="KINGSMAN" element={<SecretCode />} />;
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <Analytics />
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="gpa" element={<GpaCalc />} />
+        <Route path="gpa/freshmen" element={<FreshmenCalc />} />
+        <Route path="excusegen" element={<ExcuseGen />} />;
+        <Route path="KINGSMAN" element={<SecretCode />} />;
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
 

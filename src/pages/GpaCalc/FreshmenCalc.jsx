@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./CalcTables.css";
 import NavBar from "../../components/NavBar";
 
@@ -65,12 +65,36 @@ const initialGrades = allSubjects.reduce((acc, subj) => {
   return acc;
 }, {});
 
+const STORAGE_KEY = "freshmenGPAGrades";
+
 function GPAField({ value }) {
   return <div className="gpa-output">GPA: {value.toFixed(2)}</div>;
 }
 
 export function FreshmenCalc() {
-  const [grades, setGrades] = useState(initialGrades);
+  const [grades, setGrades] = useState(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Проверка правильности сохр оценок
+        return allSubjects.reduce((acc, subj) => {
+          acc[subj.name] = gradeOptions.includes(parsed[subj.name])
+            ? parsed[subj.name]
+            : "A";
+          return acc;
+        }, {});
+      } catch (e) {
+        console.error("Failed to parse saved grades", e);
+      }
+    }
+    return initialGrades;
+  });
+
+  // Сохранение оценок в localStorage когда они изменяются
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(grades));
+  }, [grades]);
 
   const handleChange = (name, value) => {
     setGrades((prev) => ({ ...prev, [name]: value }));
@@ -79,16 +103,13 @@ export function FreshmenCalc() {
   const calcGPA = (subjects) => {
     let totalCredits = 0;
     let weightedSum = 0;
-
     for (let subj of subjects) {
       const grade = grades[subj.name];
       if (!grade) return null;
-
       const num = gradeMap[grade];
       totalCredits += subj.credits;
       weightedSum += num * subj.credits;
     }
-
     return weightedSum / totalCredits;
   };
 
@@ -151,10 +172,8 @@ export function FreshmenCalc() {
                 {renderRow("Русская литература", fallSubjects[15])}
               </tbody>
             </table>
-
             <GPAField value={calcGPA(fallSubjects)} />
           </div>
-
           {/* SPRING */}
           <div className="calc-table-wrapper">
             <h2>Весенний семестр</h2>

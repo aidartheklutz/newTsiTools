@@ -13,7 +13,9 @@ export function HomePage() {
           <img id="title" src={logo} />
           <div>
             <h1 id="title">TSI Tools</h1>
-            <p id="title">For students - by a student</p>
+            <p id="title">
+              {/*For students - by a student*/}Made by Aidar Yrysov
+            </p>
           </div>
         </div>
         <div className="center-0 info">
