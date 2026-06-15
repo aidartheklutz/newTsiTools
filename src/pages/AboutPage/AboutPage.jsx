@@ -85,6 +85,10 @@ function AboutPage(props) {
             <a href="https://aidartheklutz.github.io" target="_none">
               мой сайт
             </a>
+            , а также мой{" "}
+            <a href="https://t.me/theklutzcomm" target="_none">
+              Telegram-канал
+            </a>
             , чтобы узнать обо мне больше (он ещё не совсем готов, но там уже
             есть ссылки на мои соцсети и прочее). Спасибо, что пользуетесь моим
             проектом!
