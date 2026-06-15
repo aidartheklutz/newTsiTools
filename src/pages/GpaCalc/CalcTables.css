@@ -1,6 +1,9 @@
 .calc-table-wrapper {
   width: 100%;
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .calc-table-wrapper h2 {
@@ -8,7 +11,7 @@
 }
 
 .calc-table {
-  width: 100%;
+  width: 50%;
   border-collapse: collapse;
   background-color: var(--accent);
   border-radius: 10px;
@@ -63,6 +66,15 @@
 }
 
 /* Responsive */
+@media (max-width: 980px) {
+  .calc-table-wrapper {
+    align-items: flex-start;
+  }
+  .calc-table {
+    width: 100%;
+  }
+}
+
 @media (max-width: 700px) {
   .calc-table th,
   .calc-table td {

@@ -13,17 +13,24 @@ export function HomePage() {
           <img id="title" src={logo} />
           <div>
             <h1 id="title">TSI Tools</h1>
-            <p id="title">
-              {/*For students - by a student*/}Made by Aidar Yrysov
-            </p>
+            <p id="title">For students - by a student</p>
           </div>
         </div>
-        <div className="center-0 info">
-          <p>
-            <a>
+        <div className="center-0 info" style={{ gap: 10 }}>
+          <div>
+            <NavLink style={{ textDecoration: 0 }} to={"about"}>
               <i className="bi bi-info-circle-fill"></i> Информация о проекте
+            </NavLink>
+          </div>
+          <div>
+            <a
+              href="https://t.me/tsitools_updates"
+              target="_none"
+              style={{ textDecoration: 0 }}
+            >
+              <i className="bi bi-telegram"></i> Telegram-канал проекта
             </a>
-          </p>
+          </div>
         </div>
         <div className="center-0">
           <div className="page-grid">

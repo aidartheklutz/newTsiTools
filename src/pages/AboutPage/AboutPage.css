@@ -1,0 +1,17 @@
+.title-about {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: calc(1% + 1vw);
+    margin-top: 20px;
+}
+
+.about-text p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.about-text h1 {
+    font-size: 40px;
+}
