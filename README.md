@@ -28,7 +28,7 @@ This project was not created for a class assignment, competition, or grade. Its 
 ## Tech Stack
 
 * **React** + **Vite**
-* **React Router** (for navigation between pages
+* **React Router** (for navigation between pages)
 * **HuggingFace Inference API** with Meta Llama 3-8B-Instruct (for excuse letter generation)
 * Vercel (for deployment)
 
