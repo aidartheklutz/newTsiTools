@@ -25,6 +25,13 @@ The project was created by a student for students and is maintained separately f
 
 This project was not created for a class assignment, competition, or grade. Its sole purpose is to provide useful tools and services for students.
 
+## Tech Stack
+
+* **React** + **Vite**
+* **React Router** (for navigation between pages
+* **HuggingFace Inference API** with Meta Llama 3-8B-Instruct (for excuse letter generation)
+* Vercel (for deployment)
+
 ## Suggestions and Feedback
 
 Ideas, feature requests, bug reports, and feedback are always welcome.
