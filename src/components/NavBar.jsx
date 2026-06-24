@@ -12,7 +12,7 @@ export default function NavBar() {
         <NavLink to="/" className="nav-logo">
           <img src={logo} alt="TSI Tools" />
           <div>
-            <h1>TSI Tools</h1>
+            <h1>TSITools</h1>
             <p>For students - by a student</p>
           </div>
         </NavLink>
