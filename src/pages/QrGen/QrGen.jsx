@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { toPng } from "html-to-image";
 import NavBar from "../../components/NavBar";
 import "./QrGen.css";
 
@@ -37,19 +36,62 @@ export default function QrGen() {
   }, [text, size]);
 
   const handleDownload = () => {
-    const node = document.getElementById("qr-preview-download-target");
-    if (!node || !text.trim()) return;
+    if (!text.trim() || !qrRef.current) return;
 
-    toPng(node, { cacheBust: true })
-      .then((dataUrl) => {
-        const link = document.createElement("a");
-        link.download = `qr-code-${Date.now()}.png`;
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((error) => {
-        console.error("Error downloading QR Code image:", error);
-      });
+    const originalCanvas = qrRef.current.querySelector("canvas");
+    if (!originalCanvas) {
+      console.error("Original canvas not found");
+      return;
+    }
+
+    try {
+      const padding = size * 0.08; // 8% padding
+      const totalSize = size + padding * 2;
+
+      const canvas = document.createElement("canvas");
+      canvas.width = totalSize;
+      canvas.height = totalSize;
+      const ctx = canvas.getContext("2d");
+
+      // Draw white background
+      ctx.fillStyle = "#ffffff";
+
+      if (rounded) {
+        const radius = totalSize * 0.08; // 8% of total size
+        ctx.beginPath();
+        ctx.moveTo(radius, 0);
+        ctx.lineTo(totalSize - radius, 0);
+        ctx.quadraticCurveTo(totalSize, 0, totalSize, radius);
+        ctx.lineTo(totalSize, totalSize - radius);
+        ctx.quadraticCurveTo(
+          totalSize,
+          totalSize,
+          totalSize - radius,
+          totalSize,
+        );
+        ctx.lineTo(radius, totalSize);
+        ctx.quadraticCurveTo(0, totalSize, 0, totalSize - radius);
+        ctx.lineTo(0, radius);
+        ctx.quadraticCurveTo(0, 0, radius, 0);
+        ctx.closePath();
+        ctx.fill();
+        ctx.clip();
+      } else {
+        ctx.fillRect(0, 0, totalSize, totalSize);
+      }
+
+      // Draw the QR code canvas
+      ctx.drawImage(originalCanvas, padding, padding, size, size);
+
+      // Trigger download
+      const dataUrl = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.download = `qr-code-${Date.now()}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (error) {
+      console.error("Failed to export QR code image:", error);
+    }
   };
 
   return (
