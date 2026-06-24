@@ -12,7 +12,7 @@ export function HomePage() {
         <div className="title">
           <img id="title" src={logo} />
           <div>
-            <h1 id="title">TSI Tools</h1>
+            <h1 id="title">TSITools</h1>
             <p id="title">For students - by a student</p>
           </div>
         </div>

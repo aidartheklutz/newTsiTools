@@ -11,7 +11,7 @@ function AboutPage(props) {
         <div className="title-about">
           <img id="title" src={logo} />
           <div>
-            <h1 id="title">TSI Tools</h1>
+            <h1 id="title">TSITools</h1>
             <p id="title">Made by Aidar Yrysov</p>
           </div>
         </div>
