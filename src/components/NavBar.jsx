@@ -21,7 +21,7 @@ export default function NavBar() {
         <div className="nav-links">
           <p>
             <NavLink to="/" className="navbarLink">
-              Хоум
+              Главная
             </NavLink>
           </p>
           <p>
@@ -67,7 +67,7 @@ export default function NavBar() {
         <div id="dropdownMenu" className="hide">
           <p>
             <NavLink to="/" className="navbarLinkDD">
-              Хоум
+              Главная
             </NavLink>
           </p>
           <p>

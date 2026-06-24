@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400..700&family=Comic+Relief:wght@400;700&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Gabriela&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kelly+Slab&family=LXGW+Marker+Gothic&family=Marck+Script&family=Pacifico&family=Pangolin&family=Pattaya&family=Podkova:wght@400..800&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&family=Zen+Antique+Soft&display=swap');
+
+
+.affirmations-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.affirmation-text {
+  font-size: 32px;
+  font-weight: 500;
+  max-width: 800px;
+  line-height: 1.4;
+}
+
+.refresh-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  padding: 15px 30px;
+  border-radius: 20px;
+  border: none;
+}
+
+@media (max-width: 540px) {
+    .affirmations-container {
+        text-align: left;
+        align-items: flex-start;
+    }
+    .refresh-button {
+        align-self: flex-end;
+    }
+}

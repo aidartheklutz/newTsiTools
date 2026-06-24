@@ -1,0 +1,171 @@
+.teamdiv-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 5%;
+}
+
+.teamdiv-inputs {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--accent);
+  max-width: 34%;
+  padding: 20px 30px;
+  border-radius: 30px;
+}
+
+.teamdiv-inputs h2 {
+  margin-bottom: 5px;
+}
+
+.teamdiv-inputs h3 {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+.teamdiv-textarea {
+  width: calc(100% - 30px);
+  min-height: 300px;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 15px;
+}
+
+.teamdiv-number-label {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.teamdiv-number-input {
+  width: 120px;
+  border: none;
+  border-radius: 16px;
+  font-size: 20px;
+  padding: 12px 15px;
+}
+
+.teamdiv-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.teamdiv-primary-button,
+.teamdiv-secondary-button {
+  min-width: 120px;
+  border: none;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.teamdiv-secondary-button {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: var(--white);
+}
+
+.teamdiv-secondary-button:hover {
+  background-color: rgba(255, 255, 255, 0.26);
+}
+
+.teamdiv-output {
+  flex: 1;
+  min-width: 0;
+}
+
+.teamdiv-message,
+.teamdiv-empty {
+  padding: 30px;
+  background-color: var(--accent);
+  border-radius: 30px;
+  font-size: 20px;
+}
+
+.teamdiv-empty {
+  display: flex;
+  min-height: 220px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.teamdiv-empty i {
+  font-size: 40px;
+}
+
+.teamdiv-empty p {
+  margin: 0;
+  font-weight: 800;
+}
+
+.teamdiv-empty span {
+  opacity: 0.85;
+}
+
+.teamdiv-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.teamdiv-team-box {
+  min-height: 160px;
+  padding: 24px;
+  border-radius: 20px;
+  background-color: var(--accent);
+}
+
+.teamdiv-team-box h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.teamdiv-team-box ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding-left: 22px;
+  font-size: 19px;
+}
+
+.teamdiv-team-box li {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 896px) {
+  .teamdiv-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .teamdiv-inputs {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .teamdiv-output {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .teamdiv-team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teamdiv-actions {
+    flex-direction: column;
+  }
+
+  .teamdiv-primary-button,
+  .teamdiv-secondary-button {
+    width: 100%;
+  }
+}

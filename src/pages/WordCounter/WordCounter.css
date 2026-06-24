@@ -1,0 +1,171 @@
+.wordcounter-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 5%;
+}
+
+.wordcounter-inputs {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--accent);
+  max-width: 34%;
+  padding: 20px 30px;
+  border-radius: 30px;
+}
+
+.wordcounter-inputs h2 {
+  margin-bottom: 5px;
+}
+
+.wordcounter-inputs h3 {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+.wordcounter-textarea {
+  width: calc(100% - 30px);
+  min-height: 260px;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 15px;
+}
+
+.wordcounter-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 130px;
+  margin-top: 20px;
+  padding: 18px;
+  border: 2px dashed var(--link);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.08);
+  text-align: center;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.wordcounter-dropzone:hover,
+.wordcounter-dropzone-active {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: var(--white);
+  cursor: pointer;
+}
+
+.wordcounter-dropzone i {
+  font-size: 32px;
+}
+
+.wordcounter-dropzone p {
+  margin: 0;
+  font-weight: 800;
+  word-break: break-word;
+}
+
+.wordcounter-dropzone span {
+  font-size: 15px;
+}
+
+.wordcounter-file-input {
+  display: none;
+}
+
+.wordcounter-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.wordcounter-button {
+  width: 40%;
+  min-width: 130px;
+  border: none;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.wordcounter-notice {
+  margin-bottom: 0;
+  font-size: 15px;
+}
+
+.wordcounter-output {
+  flex: 1;
+}
+
+.wordcounter-paper {
+  color: var(--background-color);
+  padding: 30px;
+  background-image: url("../../assets/paper.jpg");
+  background-repeat: repeat;
+  min-height: 30vh;
+  border-radius: 30px;
+  font-family: "Kurale", serif;
+  font-size: 18px;
+  word-break: keep-all;
+}
+
+.wordcounter-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.wordcounter-stat {
+  padding: 15px;
+  border-radius: 16px;
+  background-color: rgba(7, 5, 35, 0.08);
+}
+
+.wordcounter-stat span {
+  display: block;
+  font-family: "Overpass", sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.wordcounter-stat p {
+  margin: 4px 0 0;
+}
+
+.wordcounter-preview {
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+@media (max-width: 896px) {
+  .wordcounter-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .wordcounter-inputs {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .wordcounter-output {
+    width: 100%;
+  }
+
+  .wordcounter-stats {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 500px) {
+  .wordcounter-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .wordcounter-button {
+    width: 100%;
+  }
+}
