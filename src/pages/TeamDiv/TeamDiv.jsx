@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import NavBar from "../../components/NavBar";
 import "./TeamDiv.css";
 
@@ -74,26 +74,55 @@ function TeamBox({ members, number }) {
   );
 }
 
+const STORAGE_KEY = "teamDivNames";
+
 export function TeamDiv() {
-  const [namesText, setNamesText] = useState("");
-  const [teamCount, setTeamCount] = useState(2);
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const [namesText, setNamesText] = useState(saved ? saved : "");
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, namesText);
+  }, [namesText]);
+
+  const [teamCount, setTeamCount] = useState("2");
   const [teams, setTeams] = useState([]);
   const [message, setMessage] = useState("");
   const names = useMemo(() => getNames(namesText), [namesText]);
 
-  function updateTeamCount(value) {
-    const nextValue = Math.max(2, Number(value) || 2);
-    setTeamCount(nextValue);
-  }
-
   function generateTeams() {
-    if (names.length < teamCount) {
+    const count = Number(teamCount);
+
+    if (count == -67) {
       setTeams([]);
-      setMessage(`Слишком мало человек для деления на ${teamCount} групп(-ы)`);
+      setMessage("Хахахахаха сикс сэээвен");
       return;
     }
 
-    setTeams(splitIntoTeams(names, teamCount));
+    if (count < 0) {
+      setTeams([]);
+      setMessage("Отрицательное количество команд? Ты что, самый умный?");
+      return;
+    }
+
+    if (count == 0) {
+      setTeams([]);
+      setMessage("Ноль команд??? Так не пойдёт");
+      return;
+    }
+
+    if (count < 2) {
+      setTeams([]);
+      setMessage("Нужно хотя бы две команды");
+      return;
+    }
+
+    if (names.length < count) {
+      setTeams([]);
+      setMessage(`Слишком мало человек для деления на ${count} групп(-ы)`);
+      return;
+    }
+
+    setTeams(splitIntoTeams(names, count));
     setMessage("");
   }
 
@@ -131,10 +160,10 @@ export function TeamDiv() {
               id="team-count"
               className="teamdiv-number-input"
               type="number"
-              min="2"
+              inputMode="numeric"
               value={teamCount}
               onChange={(event) => {
-                updateTeamCount(event.target.value);
+                setTeamCount(event.target.value);
                 setTeams([]);
                 setMessage("");
               }}
@@ -154,7 +183,12 @@ export function TeamDiv() {
           </div>
 
           <div className="teamdiv-output">
-            {message ? <p className="teamdiv-message">{message}</p> : null}
+            {message ? (
+              <p className="teamdiv-message">
+                <i className="bi bi-exclamation-triangle-fill"></i>{" "}
+                <b>ОШИБКА:</b> {message}
+              </p>
+            ) : null}
 
             {!message && teams.length === 0 ? (
               <div className="teamdiv-empty">
