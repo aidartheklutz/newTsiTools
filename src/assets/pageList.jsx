@@ -45,8 +45,8 @@ export const mainPages = [
     title: "Время до конца пары",
     icon: <i className="bi bi-alarm-fill"></i>,
     description: "Это задумано для показа на экране во время экзамена",
-    file: "About",
-    path: "about",
+    file: "Timer",
+    path: "timer",
   },
   {
     id: crypto.randomUUID(),
