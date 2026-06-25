@@ -2,8 +2,26 @@ import React, { useState, useEffect, useRef } from "react";
 import NavBar from "../../components/NavBar";
 import "./QrGen.css";
 
+const randomLinks = [
+  "tsitools.vercel.app",
+  "tsitools.vercel.app",
+  "tsitools.vercel.app",
+  "tsitools.vercel.app",
+  "tsitools.vercel.app",
+  "tsitools.vercel.app",
+  "tsitools.vercel.app",
+  "tsitools.vercel.app",
+  "aidartheklutz.github.io",
+  "t.me/tsitools_updates",
+  "t.me/tsitools_updates",
+  "t.me/tsitools_updates",
+  "t.me/tsitools_updates",
+];
+
+const randomLink = randomLinks[Math.floor(Math.random() * randomLinks.length)];
+
 export default function QrGen() {
-  const [text, setText] = useState("tsitools.vercel.app");
+  const [text, setText] = useState(randomLink);
   const [rounded, setRounded] = useState(true);
   const [size, setSize] = useState(256);
   const qrRef = useRef(null);
