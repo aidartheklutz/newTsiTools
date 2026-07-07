@@ -104,12 +104,7 @@ function QueryInput({
     if (!blockRequest) {
       if (prompt != "") {
         setBlockRequest(true);
-        createQuery(
-          setAiResponse,
-          name,
-          prompt,
-          setBlockRequest,
-        );
+        createQuery(setAiResponse, name, prompt, setBlockRequest);
       }
     }
   }
@@ -175,6 +170,10 @@ export function ExcuseGen() {
 
   return (
     <>
+      <meta
+        name="description"
+        content="Генератор объяснительных записок"
+      ></meta>
       <NavBar />
       <div className="content">
         <div className="wrapper">

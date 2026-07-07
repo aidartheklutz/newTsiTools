@@ -135,6 +135,7 @@ export function TeamDiv() {
 
   return (
     <>
+      <meta name="description" content="Делитель на команды"></meta>
       <NavBar />
       <div className="content">
         <div className="teamdiv-wrapper">

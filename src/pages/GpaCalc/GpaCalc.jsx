@@ -5,6 +5,7 @@ import { NavLink } from "react-router";
 function GpaCalc(props) {
   return (
     <>
+      <meta name="description" content="Калькулятор GPA"></meta>
       <NavBar />
       <div className="content">
         <h1>

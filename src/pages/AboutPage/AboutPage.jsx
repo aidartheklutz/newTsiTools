@@ -6,6 +6,7 @@ import "./AboutPage.css";
 function AboutPage(props) {
   return (
     <>
+      <meta name="description" content="О проекте TSITools"></meta>
       <NavBar />
       <div className="content">
         <div className="title-about">

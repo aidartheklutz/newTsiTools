@@ -179,6 +179,7 @@ export function WordCounter() {
 
   return (
     <>
+      <meta name="description" content="Счётчик слов"></meta>
       <NavBar />
       <div className="content">
         <div className="wordcounter-wrapper">

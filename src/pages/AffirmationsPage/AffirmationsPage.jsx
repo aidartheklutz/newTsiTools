@@ -265,6 +265,7 @@ function AffirmationsPage(props) {
 
   return (
     <>
+      <meta name="description" content="Аффирмации"></meta>
       <NavBar />
       <div className="content affirmations-container">
         <div

@@ -114,6 +114,7 @@ export default function QrGen() {
 
   return (
     <>
+      <meta name="description" content="Генератор QR-кодов"></meta>
       <NavBar />
       <div className="content">
         <div className="qr-wrapper">

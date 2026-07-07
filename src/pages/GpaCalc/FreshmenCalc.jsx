@@ -136,6 +136,7 @@ export function FreshmenCalc() {
 
   return (
     <>
+      <meta name="description" content="Первокурсники | Калькулятор GPA"></meta>
       <NavBar />
       <div className="content">
         <div className="center-0">
