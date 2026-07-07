@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aidartheklutz.github.io/sitemap.xml
+Sitemap: https://tsitools.vercel.app/sitemap.xml
