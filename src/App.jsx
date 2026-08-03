@@ -10,6 +10,7 @@ import AffirmationsPage from "./pages/AffirmationsPage/AffirmationsPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import { SecretCode } from "./pages/SecretCode/SecretCode";
 import QrGen from "./pages/QrGen/QrGen";
+import { GradeConverter } from "./pages/GradeConverter/GradeConverter";
 import NotFound from "./pages/NotFound/NotFound";
 
 // <Route path='' element={<HomePage />} />
@@ -25,6 +26,7 @@ function App() {
         <Route path="excusegen" element={<ExcuseGen />} />;
         <Route path="wordcounter" element={<WordCounter />} />
         <Route path="teamdiv" element={<TeamDiv />} />
+        <Route path="converter" element={<GradeConverter />} />
         <Route path="affirmations" element={<AffirmationsPage />} />
         <Route path="qrgen" element={<QrGen />} />
         <Route path="about" element={<AboutPage />} />

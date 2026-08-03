@@ -12,7 +12,7 @@ export const mainPages = [
     title: "Конвертер оценок",
     icon: <i className="bi bi-arrow-left-right"></i>,
     description: "Конвертируйте баллы в буквенную оценку",
-    file: "Converter",
+    file: "GradeConverter",
     path: "converter",
   },
   {

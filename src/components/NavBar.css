@@ -80,40 +80,6 @@
     color: var(--link);
 }
 
-.dropdownMenuWrapper {
-    position: relative;
-}
-
-#dropdownMenu {
-    position: absolute;
-    top: 30px;
-    right: 1vw;
-    background-color: var(--accent);
-    padding: 1.5rem 2rem;
-    /* border-radius: 12px; */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    display: none;
-    flex-direction: column;
-    gap: 0.5rem;
-    z-index: 9999;
-    min-width: 180px;
-}
-
-#dropdownMenu.open {
-    display: flex;
-}
-
-.navbarLinkDD {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 15px;
-}
-
-.navbarLinkDD:hover {
-    color: var(--link);
-}
-
 /* Responsive */
 @media (max-width: 1400px) {
     .nav-links {
