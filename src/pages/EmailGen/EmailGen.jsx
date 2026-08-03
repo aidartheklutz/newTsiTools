@@ -125,7 +125,7 @@ function Sheet({ aiResponse, setBlockRequest }) {
   return cleanText ? (
     <div className="sheet-of-paper">
       <p>
-        <b>Объяснительная записка</b>
+        <b>EMAIL</b>
       </p>
 
       <p>
