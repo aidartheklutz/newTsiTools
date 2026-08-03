@@ -46,7 +46,7 @@ export const mainPages = [
     icon: <i className="bi bi-alarm-fill"></i>,
     description: "Это задумано для показа на экране во время экзамена",
     file: "Timer",
-    path: "timer",
+    path: "countdown",
   },
   {
     id: crypto.randomUUID(),

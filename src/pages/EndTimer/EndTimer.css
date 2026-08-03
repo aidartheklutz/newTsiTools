@@ -1,0 +1,72 @@
+.endtimer-page {
+  display: flex;
+  justify-content: center;
+}
+
+.endtimer-card {
+  width: min(100%, 950px);
+  min-height: 430px;
+  padding: 45px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  background-color: var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.endtimer-card-break {
+  background-color: #248a46;
+}
+
+.endtimer-heading {
+  margin: 0 0 12px;
+  color: var(--link);
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.endtimer-countdown {
+  font-size: clamp(64px, 13vw, 160px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.endtimer-details {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 45px;
+  padding: 18px 25px;
+  border-radius: 18px;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.endtimer-card-finished p {
+  margin: 0;
+  font-size: clamp(36px, 7vw, 76px);
+  font-weight: 800;
+}
+
+@media (max-width: 600px) {
+  .endtimer-card {
+    min-height: 360px;
+    padding: 25px 15px;
+    border-radius: 24px;
+  }
+
+  .endtimer-details {
+    gap: 9px;
+    margin-top: 32px;
+    padding: 14px;
+  }
+}

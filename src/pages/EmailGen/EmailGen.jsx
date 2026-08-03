@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
-import { createQuery } from "../../components/ai";
-import "./ExcuseGen.css";
+import { createQueryEmail } from "../../components/ai";
+import "./EmailGen.css";
 
 const placeholderTexts = [
-  "Я опоздал, потому что...",
-  "Я не пришёл на занятия в связи с...",
-  "Я неправильно повёл себя на...",
-  "Мне сделали замечание из-за...",
-  "Я отсутствовал на занятиях по причине...",
-  "Мне аннулировали работу за...",
-  "Я опоздал из-за...",
-  "Я не подготовился к...",
-  "Меня отругали за...",
-  "Я провинился во время...",
+  "Я хочу объяснить...",
+  "Мне нужно спросить...",
+  "Я хочу спросить...",
+  "Я хочу спросить...",
+  "Я хочу попросить...",
+  "Мне нужно продлить...",
+  "Мне надо отправить...",
+  "Я попрошу...",
+  "Я должен скинуть...",
 ];
 
 const placeholderText =
@@ -77,7 +76,7 @@ function QueryInput({
     if (!blockRequest) {
       if (prompt != "") {
         setBlockRequest(true);
-        createQuery(setAiResponse, name, prompt, setBlockRequest);
+        createQueryEmail(setAiResponse, name, prompt, setBlockRequest);
       }
     }
   }
@@ -121,21 +120,22 @@ function FastType({ text, setBlockRequest }) {
 
 function Sheet({ aiResponse, setBlockRequest }) {
   const text = aiResponse?.choices?.[0]?.message?.content ?? "";
+  const cleanText = text.trimStart();
 
-  return text ? (
+  return cleanText ? (
     <div className="sheet-of-paper">
       <p>
         <b>Объяснительная записка</b>
       </p>
 
       <p>
-        <FastType text={text} setBlockRequest={setBlockRequest} />
+        <FastType text={cleanText} setBlockRequest={setBlockRequest} />
       </p>
     </div>
   ) : null;
 }
 
-export function ExcuseGen() {
+export function EmailGen() {
   const [name, setName] = useState("NOT SET (Используй [ФИО]");
   const [prompt, setPrompt] = useState("");
   const [aiResponse, setAiResponse] = useState(null);
@@ -158,8 +158,8 @@ export function ExcuseGen() {
             </div>
             <br />
             <div>
-              <h2>Что произошло?</h2>
-              <h3>Вкратце объясните ситуацию</h3>
+              <h2>Что вы хотите написать?</h2>
+              <h3>Вкратце объясните ваше сообщение</h3>
             </div>
             <div>
               <QueryInput
