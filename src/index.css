@@ -55,27 +55,63 @@ body, textarea, input, button {
   font-style: normal;
 }
 
-button {
+button:not(.converter-tab-btn) {
+  min-height: 46px;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 14px;
   background-color: var(--link);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
   color: var(--background-color);
+  font-weight: 700;
+  line-height: 1.2;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-button:hover {
-  background-color: var(--link-1);
+button:not(.converter-tab-btn):hover:not(:disabled) {
+  border-color: var(--white);
+  background-color: var(--white);
+  box-shadow: 0 9px 18px rgba(0, 0, 0, 0.22);
   cursor: pointer;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+button:focus-visible,
+.button-link:focus-visible {
+  outline: 3px solid var(--link);
+  outline-offset: 3px;
 }
 
 .button-link {
-    padding: 20px;
-    background-color: var(--accent);
-    color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    box-sizing: border-box;
+    padding: 12px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background-color: var(--link);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+    color: var(--background-color);
     text-decoration: none;
-    font-size: 16px;
-    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    border-radius: 14px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .button-link:hover {
-    background-color: var(--accent-1);
+    border-color: var(--white);
+    background-color: var(--white);
+    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.22);
+    color: var(--background-color);
+    transform: translateY(-1px);
 }
 
 textarea {
@@ -90,6 +126,13 @@ a {
 a:hover {
   color: var(--link-1);
   cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button:not(.converter-tab-btn),
+  .button-link {
+    transition: none;
+  }
 }
 
 @media (max-width: 1300px) {

@@ -1,5 +1,6 @@
 .info-page {
     width: min(100%, 920px);
+    box-sizing: border-box;
     margin: 104px auto 56px;
     line-height: 1.7;
 }
@@ -60,6 +61,7 @@
     margin: 0 0 1.4rem;
     color: rgba(255, 255, 255, 0.88);
     font-size: clamp(1rem, 1.5vw, 1.1rem);
+    overflow-wrap: anywhere;
 }
 
 .about-text > h1,

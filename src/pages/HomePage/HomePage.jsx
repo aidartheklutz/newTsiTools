@@ -10,7 +10,7 @@ export function HomePage() {
       <NavBar />
       <div className="content">
         <div className="title">
-          <img id="title" src={logo} />
+          <img id="title" src={logo} alt="TSITools" />
           <div>
             <h1 id="title">TSITools</h1>
             <p id="title">For students – by a student</p>
@@ -25,7 +25,8 @@ export function HomePage() {
           <div>
             <a
               href="https://t.me/tsitools_updates"
-              target="_none"
+              target="_blank"
+              rel="noreferrer"
               style={{ textDecoration: 0 }}
             >
               <i className="bi bi-telegram"></i> Telegram-канал проекта
