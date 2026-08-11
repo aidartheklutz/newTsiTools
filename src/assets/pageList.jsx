@@ -1,6 +1,14 @@
 export const mainPages = [
   {
     id: crypto.randomUUID(),
+    title: "Глоссарий",
+    icon: <i className="bi bi-journal-bookmark-fill"></i>,
+    description: "Ключевые термины для учёбы в TSI",
+    file: "TermsPage",
+    path: "terms",
+  },
+  {
+    id: crypto.randomUUID(),
     title: "Калькулятор GPA",
     icon: <i className="bi bi-calculator"></i>,
     description: "Быстро и удобно рассчитайте свой GPA",
@@ -26,12 +34,21 @@ export const mainPages = [
   },
   {
     id: crypto.randomUUID(),
+    title: "Время до конца пары",
+    icon: <i className="bi bi-alarm-fill"></i>,
+    description: "Это задумано для показа на экране во время экзамена",
+    file: "Timer",
+    path: "countdown",
+  },
+  {
+    id: crypto.randomUUID(),
     title: "Генератор QR",
     icon: <i className="bi bi-qr-code-scan"></i>,
     description: "Легко создайте QR-код для ссылки или текста",
     file: "QrGen",
     path: "qrgen",
   },
+
   {
     id: crypto.randomUUID(),
     title: "Счётчик слов",
@@ -39,14 +56,6 @@ export const mainPages = [
     description: "Простая программа для подсчёта слов в вставленном тексте",
     file: "WordCounter",
     path: "wordcounter",
-  },
-  {
-    id: crypto.randomUUID(),
-    title: "Время до конца пары",
-    icon: <i className="bi bi-alarm-fill"></i>,
-    description: "Это задумано для показа на экране во время экзамена",
-    file: "Timer",
-    path: "countdown",
   },
   {
     id: crypto.randomUUID(),

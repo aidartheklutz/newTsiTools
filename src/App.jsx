@@ -9,6 +9,7 @@ import { WordCounter } from "./pages/WordCounter/WordCounter";
 import { TeamDiv } from "./pages/TeamDiv/TeamDiv";
 import AffirmationsPage from "./pages/AffirmationsPage/AffirmationsPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import TermsPage from "./pages/TermsPage/TermsPage";
 import { SecretCode } from "./pages/SecretCode/SecretCode";
 import QrGen from "./pages/QrGen/QrGen";
 import { GradeConverter } from "./pages/GradeConverter/GradeConverter";
@@ -34,6 +35,7 @@ function App() {
         <Route path="affirmations" element={<AffirmationsPage />} />
         <Route path="qrgen" element={<QrGen />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="terms" element={<TermsPage />} />
         <Route path="KINGSMAN" element={<SecretCode />} />;
         <Route path="*" element={<NotFound />} />
       </Routes>

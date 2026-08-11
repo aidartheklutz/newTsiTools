@@ -13,7 +13,7 @@ export function HomePage() {
           <img id="title" src={logo} />
           <div>
             <h1 id="title">TSITools</h1>
-            <p id="title">For students - by a student</p>
+            <p id="title">For students – by a student</p>
           </div>
         </div>
         <div className="center-0 info" style={{ gap: 10 }}>

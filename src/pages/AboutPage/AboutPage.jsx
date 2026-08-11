@@ -3,19 +3,19 @@ import NavBar from "../../components/NavBar";
 import logo from "../../assets/tsitools.png";
 import "./AboutPage.css";
 
-function AboutPage(props) {
+function AboutPage() {
   return (
     <>
       <meta name="description" content="О проекте TSITools"></meta>
       <NavBar />
-      <div className="content">
-        <div className="title-about">
-          <img id="title" src={logo} />
-          <div>
-            <h1 id="title">TSITools</h1>
-            <p id="title">Made by Aidar Yrysov</p>
+      <main className="content info-page about-page">
+        <header className="about-page__intro">
+          <div className="about-page__brand">
+            <img className="about-page__logo" src={logo} alt="TSITools" />
+            <h1>TSITools</h1>
           </div>
-        </div>
+          <p className="about-page__byline">Made by Aidar Yrysov in 2025</p>
+        </header>
         <div className="about-text">
           <h1>О проекте TSITools</h1>
           <p>
@@ -78,7 +78,8 @@ function AboutPage(props) {
             Честно говоря, кроме хостинга я практически не использую другие
             возможности Vercel.
           </p>
-
+        </div>
+        <div className="about-text" style={{ marginTop: 20 }}>
           <h1>Об авторе</h1>
           <p>
             Меня зовут Айдар, и именно я создал этот сайт. Сейчас я учусь на
@@ -97,7 +98,7 @@ function AboutPage(props) {
           <h2>Как часто ты трогаешь траву?</h2>
           <p>Раз в несколько лет.</p>
         </div>
-      </div>
+      </main>
     </>
   );
 }
