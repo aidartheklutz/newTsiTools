@@ -3,12 +3,14 @@
   flex-direction: column;
   gap: 30px;
   width: 100%;
+  height: 70vh;
+  justify-content: center;
 }
 
 .converter-wrapper {
   display: flex;
   flex-direction: row;
-  align-items: stretch; /* Stretch makes left and right panel equal height */
+  align-items: stretch;
   gap: 5%;
 }
 
@@ -243,6 +245,9 @@
 }
 
 @media (max-width: 896px) {
+  .converter-container-outer {
+    height: 100vh;
+  }
   .converter-wrapper {
     flex-direction: column;
     align-items: stretch;

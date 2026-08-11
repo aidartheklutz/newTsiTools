@@ -1,6 +1,8 @@
 .endtimer-page {
   display: flex;
   justify-content: center;
+  height: 70vh;
+  align-items: center;
 }
 
 .endtimer-card {
