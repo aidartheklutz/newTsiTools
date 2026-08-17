@@ -29,7 +29,7 @@ This project was not created for a class assignment, competition, or grade. Its 
 
 * **React** + **Vite**
 * **React Router** (for navigation between pages)
-* **HuggingFace Inference API** with Meta Llama 3-8B-Instruct (for excuse letter generation)
+* **HuggingFace Inference API** with Qwen3-8B (for excuse letter and formal email generation)
 * Vercel (for deployment)
 
 ## Suggestions and Feedback
