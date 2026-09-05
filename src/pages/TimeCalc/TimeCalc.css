@@ -1,0 +1,332 @@
+.timecalc-now {
+  background-color: var(--accent);
+  border-radius: 30px;
+  padding: 24px 30px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.timecalc-now-label,
+.timecalc-result-kicker,
+.timecalc-format-label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--link);
+}
+
+.timecalc-now-date,
+.timecalc-result-title {
+  margin: 8px 0 0;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.timecalc-now-unix,
+.timecalc-result-delta {
+  margin: 8px 0 0;
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+.timecalc-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 5%;
+}
+
+.timecalc-inputs {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--accent);
+  max-width: 34%;
+  width: 100%;
+  padding: 30px;
+  border-radius: 30px;
+  box-sizing: border-box;
+}
+
+.timecalc-inputs h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+
+.timecalc-inputs h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--link);
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.timecalc-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 15px 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 5px;
+  border-radius: 16px;
+}
+
+.timecalc-field .timecalc-tabs {
+  margin: 0;
+}
+
+.timecalc-quiet-btn {
+  border: none;
+  background: transparent;
+  color: var(--white);
+  box-shadow: none;
+  min-height: 0;
+  padding: 0;
+  font-weight: 600;
+}
+
+.timecalc-tab-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timecalc-tab-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.timecalc-tab-btn.active {
+  background-color: var(--link);
+  color: var(--background-color);
+}
+
+.timecalc-math-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.timecalc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timecalc-field label,
+.timecalc-field-label {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--white);
+}
+
+.timecalc-text-input,
+.timecalc-select {
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  font-size: 18px;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  background-color: var(--white);
+  color: var(--background-color);
+}
+
+.timecalc-text-input[type="datetime-local"] {
+  color-scheme: light;
+  min-height: 46px;
+}
+
+.timecalc-hint {
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.timecalc-full-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.timecalc-datetime-row,
+.timecalc-amount-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.timecalc-datetime-row .timecalc-text-input,
+.timecalc-amount-row .timecalc-text-input {
+  min-width: 0;
+  flex: 1;
+}
+
+.timecalc-amount-row .timecalc-text-input {
+  flex: 0 0 38%;
+}
+
+.timecalc-amount-row .timecalc-select {
+  flex: 1;
+}
+
+.timecalc-now-btn {
+  flex: 0 0 auto;
+  min-height: 46px;
+  padding: 0 16px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.16);
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.timecalc-now-btn:hover {
+  background-color: rgba(255, 255, 255, 0.26);
+}
+
+.timecalc-output {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.timecalc-result-card,
+.timecalc-message {
+  background-color: var(--accent);
+  border-radius: 30px;
+  padding: 30px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.timecalc-message.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2c0e12;
+  border: 1px solid #f44336;
+  font-size: 18px;
+  color: #ff8a80;
+}
+
+.timecalc-message.error i {
+  margin-right: 8px;
+}
+
+.timecalc-format-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.timecalc-format-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+}
+
+.timecalc-format-label {
+  flex: 0 0 190px;
+}
+
+.timecalc-format-value {
+  flex: 1;
+  min-width: 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  word-break: break-all;
+  font-variant-numeric: tabular-nums;
+}
+
+.timecalc-copy-btn {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.timecalc-copy-btn:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.timecalc-copy-btn i {
+  font-size: 16px;
+}
+
+@media (max-width: 896px) {
+  .timecalc-now {
+    padding: 20px;
+  }
+
+  .timecalc-now-date,
+  .timecalc-result-title {
+    font-size: 22px;
+  }
+
+  .timecalc-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .timecalc-inputs {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .timecalc-output {
+    width: 100%;
+  }
+
+  .timecalc-result-card,
+  .timecalc-message {
+    padding: 20px;
+  }
+
+  .timecalc-format-row {
+    flex-wrap: wrap;
+  }
+
+  .timecalc-format-label {
+    flex: 1 1 140px;
+  }
+
+  .timecalc-format-value {
+    flex: 1 1 100%;
+    order: 3;
+    font-size: 16px;
+  }
+
+  .timecalc-datetime-row,
+  .timecalc-amount-row {
+    flex-direction: column;
+  }
+
+  .timecalc-amount-row .timecalc-text-input {
+    flex: 1 1 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timecalc-tab-btn,
+  .timecalc-copy-btn {
+    transition: none;
+  }
+}

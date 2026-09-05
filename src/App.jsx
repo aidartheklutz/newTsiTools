@@ -13,6 +13,7 @@ import TermsPage from "./pages/TermsPage/TermsPage";
 import { SecretCode } from "./pages/SecretCode/SecretCode";
 import QrGen from "./pages/QrGen/QrGen";
 import { GradeConverter } from "./pages/GradeConverter/GradeConverter";
+import { TimeCalc } from "./pages/TimeCalc/TimeCalc";
 import EndTimer from "./pages/EndTimer/EndTimer";
 import NotFound from "./pages/NotFound/NotFound";
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="wordcounter" element={<WordCounter />} />
         <Route path="teamdiv" element={<TeamDiv />} />
         <Route path="converter" element={<GradeConverter />} />
+        <Route path="timecalc" element={<TimeCalc />} />
         <Route path="countdown" element={<EndTimer />} />
         <Route path="affirmations" element={<AffirmationsPage />} />
         <Route path="qrgen" element={<QrGen />} />

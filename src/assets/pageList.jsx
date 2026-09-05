@@ -25,6 +25,14 @@ export const mainPages = [
   },
   {
     id: crypto.randomUUID(),
+    title: "Калькулятор времени",
+    icon: <i className="bi bi-clock-fill"></i>,
+    description: "Unix-метки, форматы дат и арифметика времени",
+    file: "TimeCalc",
+    path: "timecalc",
+  },
+  {
+    id: crypto.randomUUID(),
     title: "Делитель на команды",
     icon: <i className="bi bi-people-fill"></i>,
     description:
