@@ -205,7 +205,7 @@ function FormatRows({ date, copiedKey, onCopy }) {
 
 export function TimeCalc() {
   const [now, setNow] = useState(() => new Date());
-  const [tab, setTab] = useState("convert");
+  const [tab, setTab] = useState("math");
   const [inputValue, setInputValue] = useState(() =>
     formatLocalDateTime(new Date()),
   );
@@ -296,17 +296,17 @@ export function TimeCalc() {
             <div className="timecalc-tabs">
               <button
                 type="button"
-                className={`timecalc-quiet-btn timecalc-tab-btn ${tab === "convert" ? "active" : ""}`}
-                onClick={() => setTab("convert")}
-              >
-                Конвертер
-              </button>
-              <button
-                type="button"
                 className={`timecalc-quiet-btn timecalc-tab-btn ${tab === "math" ? "active" : ""}`}
                 onClick={() => setTab("math")}
               >
                 Операции с датами
+              </button>
+              <button
+                type="button"
+                className={`timecalc-quiet-btn timecalc-tab-btn ${tab === "convert" ? "active" : ""}`}
+                onClick={() => setTab("convert")}
+              >
+                Конвертер
               </button>
             </div>
 
