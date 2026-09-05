@@ -118,18 +118,58 @@ function FastType({ text, setBlockRequest }) {
   return <span>{display}</span>;
 }
 
-function Sheet({ aiResponse, setBlockRequest }) {
-  const text = aiResponse?.choices?.[0]?.message?.content ?? "";
-  const cleanText = text.trimStart();
+function parseEmailResponse(raw) {
+  const text = (raw ?? "").replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+  if (!text) return { subject: "", body: "" };
 
-  return cleanText ? (
+  const unfenced = text
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/, "")
+    .trim();
+
+  const tryParse = (candidate) => {
+    try {
+      const parsed = JSON.parse(candidate);
+      if (!parsed || typeof parsed !== "object") return null;
+
+      const subject = parsed.subject;
+      const body = parsed.body;
+      if (typeof subject === "string" && typeof body === "string" && body) {
+        return {
+          subject: subject.replace(/^(Subject|Тема)\s*:\s*/i, "").trim(),
+          body,
+        };
+      }
+    } catch {
+      return null;
+    }
+    return null;
+  };
+
+  const direct = tryParse(unfenced);
+  if (direct) return direct;
+
+  const objectMatch = unfenced.match(/\{[\s\S]*\}/);
+  if (objectMatch) {
+    const extracted = tryParse(objectMatch[0]);
+    if (extracted) return extracted;
+  }
+
+  return { subject: "", body: text };
+}
+
+function Sheet({ aiResponse, setBlockRequest }) {
+  const raw = aiResponse?.choices?.[0]?.message?.content ?? "";
+  const { subject, body } = parseEmailResponse(raw);
+
+  return body ? (
     <div className="sheet-of-paper">
       <p>
-        <b>EMAIL</b>
+        <b>Subject: {subject}</b>
       </p>
 
       <p>
-        <FastType text={cleanText} setBlockRequest={setBlockRequest} />
+        <FastType text={body} setBlockRequest={setBlockRequest} />
       </p>
     </div>
   ) : null;
