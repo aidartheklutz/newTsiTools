@@ -64,6 +64,8 @@ function QueryInput({
   setPrompt,
   prompt,
   name,
+  language,
+  setLanguage,
   setAiResponse,
   blockRequest,
   setBlockRequest,
@@ -76,7 +78,7 @@ function QueryInput({
     if (!blockRequest) {
       if (prompt != "") {
         setBlockRequest(true);
-        createQueryEmail(setAiResponse, name, prompt, setBlockRequest);
+        createQueryEmail(setAiResponse, name, prompt, setBlockRequest, language);
       }
     }
   }
@@ -90,6 +92,17 @@ function QueryInput({
         className="query-input"
         onChange={setInput}
       />
+      <label className="language-select-label">
+        Язык текста
+        <select
+          className="language-select"
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          <option value="русский">Русский</option>
+          <option value="английский">English</option>
+        </select>
+      </label>
       <button className="query-input-button" onClick={sendMessage}>
         Создать текст
       </button>
@@ -178,6 +191,7 @@ function Sheet({ aiResponse, setBlockRequest }) {
 export function EmailGen() {
   const [name, setName] = useState("NOT SET (Используй [ФИО]");
   const [prompt, setPrompt] = useState("");
+  const [language, setLanguage] = useState("русский");
   const [aiResponse, setAiResponse] = useState(null);
   const [blockRequest, setBlockRequest] = useState(false);
 
@@ -206,6 +220,8 @@ export function EmailGen() {
                 setPrompt={setPrompt}
                 prompt={prompt}
                 name={name}
+                language={language}
+                setLanguage={setLanguage}
                 setAiResponse={setAiResponse}
                 blockRequest={blockRequest}
                 setBlockRequest={setBlockRequest}
