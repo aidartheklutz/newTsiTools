@@ -17,28 +17,20 @@ export const mainPages = [
   },
   {
     id: crypto.randomUUID(),
-    title: "Конвертер оценок",
-    icon: <i className="bi bi-arrow-left-right"></i>,
-    description: "Конвертируйте баллы в буквенную оценку",
-    file: "GradeConverter",
-    path: "converter",
-  },
-  {
-    id: crypto.randomUUID(),
-    title: "Калькулятор времени",
-    icon: <i className="bi bi-clock-fill"></i>,
-    description: "Unix-метки, форматы дат и арифметика времени",
-    file: "TimeCalc",
-    path: "timecalc",
-  },
-  {
-    id: crypto.randomUUID(),
     title: "Делитель на команды",
     icon: <i className="bi bi-people-fill"></i>,
     description:
       "Автоматически разделите группу людей на нужное число подгрупп",
     file: "TeamDiv",
     path: "teamdiv",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Конвертер оценок",
+    icon: <i className="bi bi-arrow-left-right"></i>,
+    description: "Конвертируйте баллы в буквенную оценку",
+    file: "GradeConverter",
+    path: "converter",
   },
   {
     id: crypto.randomUUID(),
@@ -56,7 +48,6 @@ export const mainPages = [
     file: "QrGen",
     path: "qrgen",
   },
-
   {
     id: crypto.randomUUID(),
     title: "Счётчик слов",
@@ -64,14 +55,6 @@ export const mainPages = [
     description: "Простая программа для подсчёта слов в вставленном тексте",
     file: "WordCounter",
     path: "wordcounter",
-  },
-  {
-    id: crypto.randomUUID(),
-    title: "Аффирмации",
-    icon: <i className="bi bi-person-heart"></i>,
-    description: "Небольшие мотивирующие цитаты для поднятия духа",
-    file: "Affirmations",
-    path: "affirmations",
   },
   {
     id: crypto.randomUUID(),
@@ -89,5 +72,21 @@ export const mainPages = [
       "ИИ для создания формальных электронных писем из простого сообщения",
     file: "EmailGen",
     path: "emailgen",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Аффирмации",
+    icon: <i className="bi bi-person-heart"></i>,
+    description: "Небольшие мотивирующие цитаты для поднятия духа",
+    file: "Affirmations",
+    path: "affirmations",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Калькулятор времени",
+    icon: <i className="bi bi-clock-fill"></i>,
+    description: "Unix-метки, форматы дат и арифметика времени",
+    file: "TimeCalc",
+    path: "timecalc",
   },
 ];
