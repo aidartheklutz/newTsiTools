@@ -1,14 +1,41 @@
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
+import { mainPages } from "../assets/pageList";
 import logo from "../assets/tsitools.png";
 import "./NavBar.css";
 
 export default function NavBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    if (!isMenuOpen) return undefined;
+
+    const closeOnOutsideClick = (event) => {
+      if (!menuRef.current?.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isMenuOpen]);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <div className="navbar-wrapper">
       <div className="navbar-content">
-        {/* Logo и ещё Title */}
-        <NavLink to="/" className="nav-logo">
+        <NavLink to="/" className="nav-logo" onClick={closeMenu}>
           <img src={logo} alt="TSI Tools" />
           <div>
             <h1>TSITools</h1>
@@ -16,49 +43,57 @@ export default function NavBar() {
           </div>
         </NavLink>
 
-        {/* Desktop Links */}
-        <div className="nav-links">
-          <p>
-            <NavLink to="/" className="navbarLink">
-              Главная
-            </NavLink>
-          </p>
-          <p>
-            <NavLink to="/gpa" className="navbarLink">
-              Калькулятор GPA
-            </NavLink>
-          </p>
-          <p>
-            <NavLink to="/teamdiv" className="navbarLink">
-              Команды
-            </NavLink>
-          </p>
-          <p>
-            <NavLink to="/qrgen" className="navbarLink">
-              Генератор QR
-            </NavLink>
-          </p>
-          <p>
-            <NavLink to="/excusegen" className="navbarLink">
-              Генератор объяснительных
-            </NavLink>
-          </p>
-          <p>
-            <NavLink to="/wordcounter" className="navbarLink">
-              Счётчик слов
-            </NavLink>
-          </p>
-          <p>
-            <NavLink to="/affirmations" className="navbarLink">
-              Аффирмации
-            </NavLink>
-          </p>
-        </div>
+        <div className="nav-menu" ref={menuRef}>
+          <button
+            type="button"
+            className="nav-menu-button"
+            aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню инструментов"}
+            aria-expanded={isMenuOpen}
+            aria-controls="tools-menu"
+            onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+          >
+            <span>Инструменты</span>
+            <i
+              className={`bi ${isMenuOpen ? "bi-x-lg" : "bi-list"}`}
+              aria-hidden="true"
+            ></i>
+          </button>
 
-        {/* Mobile Home Icon */}
-        <NavLink to="/" id="navMenu">
-          <i className="bi bi-house-door-fill"></i>
-        </NavLink>
+          {isMenuOpen && (
+            <div className="nav-menu-panel" id="tools-menu">
+              <div className="nav-menu-heading">
+                <span>Все инструменты</span>
+              </div>
+
+              <nav className="nav-menu-grid" aria-label="Инструменты сайта">
+                {mainPages.map((page) => (
+                  <NavLink
+                    key={page.id}
+                    to={`/${page.path}`}
+                    className={({ isActive }) =>
+                      `nav-menu-link${isActive ? " active" : ""}`
+                    }
+                    onClick={closeMenu}
+                  >
+                    <span className="nav-menu-icon" aria-hidden="true">
+                      {page.icon}
+                    </span>
+                    <span>{page.title}</span>
+                  </NavLink>
+                ))}
+              </nav>
+
+              <div className="nav-menu-footer">
+                <NavLink to="/" onClick={closeMenu}>
+                  Главная
+                </NavLink>
+                <NavLink to="/about" onClick={closeMenu}>
+                  О проекте
+                </NavLink>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

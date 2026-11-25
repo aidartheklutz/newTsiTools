@@ -162,12 +162,14 @@ Answer:
 ЗАПРОС ОТ ПОЛЬЗОВАТЕЛЯ:
 `;
 
+const model = "google/gemma-4-26b-a4b-it:free";
+
 async function query(data) {
   const response = await fetch(
-    "https://router.huggingface.co/v1/chat/completions",
+    "https://openrouter.ai/api/v1/chat/completions",
     {
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_HF_API_KEY}`,
+        Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_KEY}`,
         "Content-Type": "application/json",
       },
       method: "POST",
@@ -193,15 +195,21 @@ export function createQuery(
         content: `${explanation} \n ИМЯ ПОЛЬЗОВАТЕЛЯ: ${name !== "" ? name : "NOT SET (Используй 'ФИО')"} \n ЯЗЫК: ${language} \n ДЕТАЛИ: ${content}`,
       },
     ],
-    model: "Qwen/Qwen3-8B:nscale",
-  }).then((response) => {
-    console.log(
-      `ИМЯ ПОЛЬЗОВАТЕЛЯ: ${name !== "" ? name : "NOT SET (Используй 'ФИО')"} \n ЯЗЫК: ${language} \n ДЕТАЛИ: ${content}`,
-    );
-    console.log(JSON.stringify(response));
-    setAiResponse(response);
-    setBlockRequest(false);
-  });
+    model,
+  })
+    .then((response) => {
+      console.log(
+        `ИМЯ ПОЛЬЗОВАТЕЛЯ: ${name !== "" ? name : "NOT SET (Используй 'ФИО')"} \n ЯЗЫК: ${language} \n ДЕТАЛИ: ${content}`,
+      );
+      console.log(JSON.stringify(response));
+      setAiResponse(response);
+    })
+    .catch((error) => {
+      console.error("AI request failed:", error);
+    })
+    .finally(() => {
+      setBlockRequest(false);
+    });
 }
 
 export function createQueryEmail(
@@ -219,13 +227,19 @@ export function createQueryEmail(
         content: `${email} \n ИМЯ ПОЛЬЗОВАТЕЛЯ: ${name !== "" ? name : "NOT SET (Используй [ФИО])"} \n ЯЗЫК: ${language} \n ДЕТАЛИ: ${content}`,
       },
     ],
-    model: "Qwen/Qwen3-8B:nscale",
-  }).then((response) => {
-    console.log(
-      `ИМЯ ПОЛЬЗОВАТЕЛЯ: ${name !== "" ? name : "NOT SET (Используй 'ФИО')"} \n ЯЗЫК: ${language} \n ДЕТАЛИ: ${content}`,
-    );
-    console.log(JSON.stringify(response));
-    setAiResponse(response);
-    setBlockRequest(false);
-  });
+    model,
+  })
+    .then((response) => {
+      console.log(
+        `ИМЯ ПОЛЬЗОВАТЕЛЯ: ${name !== "" ? name : "NOT SET (Используй 'ФИО')"} \n ЯЗЫК: ${language} \n ДЕТАЛИ: ${content}`,
+      );
+      console.log(JSON.stringify(response));
+      setAiResponse(response);
+    })
+    .catch((error) => {
+      console.error("AI request failed:", error);
+    })
+    .finally(() => {
+      setBlockRequest(false);
+    });
 }

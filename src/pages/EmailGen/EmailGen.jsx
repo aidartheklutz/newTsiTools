@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
+import AiLoading from "../../components/AiLoading";
 import { createQueryEmail } from "../../components/ai";
 import "./EmailGen.css";
 
@@ -103,15 +104,18 @@ function QueryInput({
           <option value="английский">English</option>
         </select>
       </label>
-      <button className="query-input-button" onClick={sendMessage}>
-        Создать текст
+      <button
+        className="query-input-button"
+        onClick={sendMessage}
+        disabled={blockRequest}
+      >
+        {blockRequest ? "Создаём..." : "Создать текст"}
       </button>
     </div>
   );
 }
 
-function FastType({ text, setBlockRequest }) {
-  setBlockRequest(true);
+function FastType({ text }) {
   const [display, setDisplay] = useState("");
 
   useEffect(() => {
@@ -127,7 +131,6 @@ function FastType({ text, setBlockRequest }) {
     return () => clearInterval(interval);
   }, [text]);
 
-  setBlockRequest(false);
   return <span>{display}</span>;
 }
 
@@ -171,7 +174,7 @@ function parseEmailResponse(raw) {
   return { subject: "", body: text };
 }
 
-function Sheet({ aiResponse, setBlockRequest }) {
+function Sheet({ aiResponse }) {
   const raw = aiResponse?.choices?.[0]?.message?.content ?? "";
   const { subject, body } = parseEmailResponse(raw);
 
@@ -182,7 +185,7 @@ function Sheet({ aiResponse, setBlockRequest }) {
       </p>
 
       <p>
-        <FastType text={body} setBlockRequest={setBlockRequest} />
+        <FastType text={body} />
       </p>
     </div>
   ) : null;
@@ -228,8 +231,8 @@ export function EmailGen() {
               />
             </div>
           </div>
-          <div className="ai-output">
-            <Sheet aiResponse={aiResponse} setBlockRequest={setBlockRequest} />
+          <div className="ai-output" aria-busy={blockRequest}>
+            {blockRequest ? <AiLoading /> : <Sheet aiResponse={aiResponse} />}
           </div>
         </div>
       </div>

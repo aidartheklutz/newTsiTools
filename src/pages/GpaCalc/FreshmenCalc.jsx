@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import "./CalcTables.css";
 import NavBar from "../../components/NavBar";
+import { CalculatorBackLink } from "./CalculatorBackLink";
+import {
+  FRESHMEN_GPA_STORAGE_KEY,
+  freshmenFallSubjects,
+  freshmenSpringSubjects,
+  freshmenSubjects,
+} from "./freshmenGpaData";
 
 const gradeMap = {
   A: 4,
@@ -19,53 +26,10 @@ const gradeMap = {
 
 const gradeOptions = Object.keys(gradeMap);
 
-const fallSubjects = [
-  { name: "math1", credits: 6 },
-  { name: "lang1", credits: 6 },
-  { name: "phy1", credits: 3 },
-  { name: "inf1", credits: 3 },
-  { name: "art1", credits: 1.5 },
-  { name: "crit1", credits: 1.5 },
-  { name: "kg1", credits: 1.5 },
-  { name: "rus1", credits: 1.5 },
-  { name: "whist1", credits: 1.5 },
-  { name: "geo1", credits: 1.5 },
-  { name: "chem1", credits: 1.5 },
-  { name: "bio1", credits: 1 },
-  { name: "civ1", credits: 1 },
-  { name: "khist1", credits: 1 },
-  { name: "kglit1", credits: 1 },
-  { name: "ruslit1", credits: 1 },
-];
-
-const springSubjects = [
-  { name: "math2", credits: 8 },
-  { name: "lang2", credits: 8 },
-  { name: "phy2", credits: 5 },
-  { name: "inf2", credits: 5 },
-  { name: "art2", credits: 2.5 },
-  { name: "crit2", credits: 2.5 },
-  { name: "kg2", credits: 2.5 },
-  { name: "rus2", credits: 2.5 },
-  { name: "whist2", credits: 1.5 },
-  { name: "geo2", credits: 1.5 },
-  { name: "chem2", credits: 1.5 },
-  { name: "bio2", credits: 1 },
-  { name: "civ2", credits: 1 },
-  { name: "khist2", credits: 1 },
-  { name: "kglit2", credits: 1 },
-  { name: "ruslit2", credits: 1 },
-  { name: "astr", credits: 1 },
-];
-
-const allSubjects = [...fallSubjects, ...springSubjects];
-
-const initialGrades = allSubjects.reduce((acc, subj) => {
+const initialGrades = freshmenSubjects.reduce((acc, subj) => {
   acc[subj.name] = "A";
   return acc;
 }, {});
-
-const STORAGE_KEY = "freshmenGPAGrades";
 
 function GPAField({ value }) {
   return <div className="gpa-output">GPA: {value.toFixed(2)}</div>;
@@ -73,12 +37,12 @@ function GPAField({ value }) {
 
 export function FreshmenCalc() {
   const [grades, setGrades] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = localStorage.getItem(FRESHMEN_GPA_STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         // Проверка правильности сохр оценок
-        return allSubjects.reduce((acc, subj) => {
+        return freshmenSubjects.reduce((acc, subj) => {
           acc[subj.name] = gradeOptions.includes(parsed[subj.name])
             ? parsed[subj.name]
             : "A";
@@ -93,7 +57,7 @@ export function FreshmenCalc() {
 
   // Сохранение оценок в localStorage когда они изменяются
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(grades));
+    localStorage.setItem(FRESHMEN_GPA_STORAGE_KEY, JSON.stringify(grades));
   }, [grades]);
 
   const handleChange = (name, value) => {
@@ -113,7 +77,7 @@ export function FreshmenCalc() {
     return weightedSum / totalCredits;
   };
 
-  const overallGPA = calcGPA([...fallSubjects, ...springSubjects]);
+  const overallGPA = calcGPA(freshmenSubjects);
 
   const renderRow = (label, subj) => (
     <tr key={subj.name}>
@@ -140,6 +104,7 @@ export function FreshmenCalc() {
       <NavBar />
       <div className="content">
         <div className="center-0 gpa-calculator">
+          <CalculatorBackLink />
           <h1>Первокурсники: Калькулятор GPA</h1>
           {/* TOTAL */}
           <div className="gpa-output">Общий GPA: {overallGPA.toFixed(2)}</div>
@@ -155,25 +120,25 @@ export function FreshmenCalc() {
                 </tr>
               </thead>
               <tbody>
-                {renderRow("Математика", fallSubjects[0])}
-                {renderRow("Английский язык", fallSubjects[1])}
-                {renderRow("Физика", fallSubjects[2])}
-                {renderRow("Информатика", fallSubjects[3])}
-                {renderRow("История искусства", fallSubjects[4])}
-                {renderRow("Критическое мышление", fallSubjects[5])}
-                {renderRow("Кыргызский язык", fallSubjects[6])}
-                {renderRow("Русский язык", fallSubjects[7])}
-                {renderRow("Всемирная история", fallSubjects[8])}
-                {renderRow("География", fallSubjects[9])}
-                {renderRow("Химия", fallSubjects[10])}
-                {renderRow("Биология", fallSubjects[11])}
-                {renderRow("Граждановедение", fallSubjects[12])}
-                {renderRow("История Кыргызстана", fallSubjects[13])}
-                {renderRow("Кыргызская литература", fallSubjects[14])}
-                {renderRow("Русская литература", fallSubjects[15])}
+                {renderRow("Математика", freshmenFallSubjects[0])}
+                {renderRow("Английский язык", freshmenFallSubjects[1])}
+                {renderRow("Физика", freshmenFallSubjects[2])}
+                {renderRow("Информатика", freshmenFallSubjects[3])}
+                {renderRow("История искусства", freshmenFallSubjects[4])}
+                {renderRow("Критическое мышление", freshmenFallSubjects[5])}
+                {renderRow("Кыргызский язык", freshmenFallSubjects[6])}
+                {renderRow("Русский язык", freshmenFallSubjects[7])}
+                {renderRow("Всемирная история", freshmenFallSubjects[8])}
+                {renderRow("География", freshmenFallSubjects[9])}
+                {renderRow("Химия", freshmenFallSubjects[10])}
+                {renderRow("Биология", freshmenFallSubjects[11])}
+                {renderRow("Граждановедение", freshmenFallSubjects[12])}
+                {renderRow("История Кыргызстана", freshmenFallSubjects[13])}
+                {renderRow("Кыргызская литература", freshmenFallSubjects[14])}
+                {renderRow("Русская литература", freshmenFallSubjects[15])}
               </tbody>
             </table>
-            <GPAField value={calcGPA(fallSubjects)} />
+            <GPAField value={calcGPA(freshmenFallSubjects)} />
           </div>
           {/* SPRING */}
           <div className="calc-table-wrapper">
@@ -187,26 +152,26 @@ export function FreshmenCalc() {
                 </tr>
               </thead>
               <tbody>
-                {renderRow("Математика", springSubjects[0])}
-                {renderRow("Английский язык", springSubjects[1])}
-                {renderRow("Физика", springSubjects[2])}
-                {renderRow("Информатика", springSubjects[3])}
-                {renderRow("История искусства", springSubjects[4])}
-                {renderRow("Критическое мышление", springSubjects[5])}
-                {renderRow("Кыргызский язык", springSubjects[6])}
-                {renderRow("Русский язык", springSubjects[7])}
-                {renderRow("Всемирная история", springSubjects[8])}
-                {renderRow("География", springSubjects[9])}
-                {renderRow("Химия", springSubjects[10])}
-                {renderRow("Биология", springSubjects[11])}
-                {renderRow("Граждановедение", springSubjects[12])}
-                {renderRow("История Кыргызстана", springSubjects[13])}
-                {renderRow("Кыргызская литература", springSubjects[14])}
-                {renderRow("Русская литература", springSubjects[15])}
-                {renderRow("Астрономия", springSubjects[16])}
+                {renderRow("Математика", freshmenSpringSubjects[0])}
+                {renderRow("Английский язык", freshmenSpringSubjects[1])}
+                {renderRow("Физика", freshmenSpringSubjects[2])}
+                {renderRow("Информатика", freshmenSpringSubjects[3])}
+                {renderRow("История искусства", freshmenSpringSubjects[4])}
+                {renderRow("Критическое мышление", freshmenSpringSubjects[5])}
+                {renderRow("Кыргызский язык", freshmenSpringSubjects[6])}
+                {renderRow("Русский язык", freshmenSpringSubjects[7])}
+                {renderRow("Всемирная история", freshmenSpringSubjects[8])}
+                {renderRow("География", freshmenSpringSubjects[9])}
+                {renderRow("Химия", freshmenSpringSubjects[10])}
+                {renderRow("Биология", freshmenSpringSubjects[11])}
+                {renderRow("Граждановедение", freshmenSpringSubjects[12])}
+                {renderRow("История Кыргызстана", freshmenSpringSubjects[13])}
+                {renderRow("Кыргызская литература", freshmenSpringSubjects[14])}
+                {renderRow("Русская литература", freshmenSpringSubjects[15])}
+                {renderRow("Астрономия", freshmenSpringSubjects[16])}
               </tbody>
             </table>
-            <GPAField value={calcGPA(springSubjects)} />
+            <GPAField value={calcGPA(freshmenSpringSubjects)} />
           </div>
         </div>
       </div>

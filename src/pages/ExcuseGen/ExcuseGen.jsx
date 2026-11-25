@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
+import AiLoading from "../../components/AiLoading";
 import { createQuery } from "../../components/ai";
 import "./ExcuseGen.css";
 
@@ -106,15 +107,18 @@ function QueryInput({
           <option value="английский">English</option>
         </select>
       </label>
-      <button className="query-input-button" onClick={sendMessage}>
-        Создать текст
+      <button
+        className="query-input-button"
+        onClick={sendMessage}
+        disabled={blockRequest}
+      >
+        {blockRequest ? "Создаём..." : "Создать текст"}
       </button>
     </div>
   );
 }
 
-function FastType({ text, setBlockRequest }) {
-  setBlockRequest(true);
+function FastType({ text }) {
   const [display, setDisplay] = useState("");
 
   useEffect(() => {
@@ -130,11 +134,10 @@ function FastType({ text, setBlockRequest }) {
     return () => clearInterval(interval);
   }, [text]);
 
-  setBlockRequest(false);
   return <span>{display}</span>;
 }
 
-function Sheet({ aiResponse, setBlockRequest, language }) {
+function Sheet({ aiResponse, language }) {
   const text = aiResponse?.choices?.[0]?.message?.content ?? "";
   const title =
     language === "английский" ? "Explanatory note" : "Объяснительная записка";
@@ -146,7 +149,7 @@ function Sheet({ aiResponse, setBlockRequest, language }) {
       </p>
 
       <p>
-        <FastType text={text} setBlockRequest={setBlockRequest} />
+        <FastType text={text} />
       </p>
     </div>
   ) : null;
@@ -194,12 +197,12 @@ export function ExcuseGen() {
               />
             </div>
           </div>
-          <div className="ai-output">
-            <Sheet
-              aiResponse={aiResponse}
-              setBlockRequest={setBlockRequest}
-              language={outputLanguage}
-            />
+          <div className="ai-output" aria-busy={blockRequest}>
+            {blockRequest ? (
+              <AiLoading />
+            ) : (
+              <Sheet aiResponse={aiResponse} language={outputLanguage} />
+            )}
           </div>
         </div>
       </div>

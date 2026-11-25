@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import NavBar from "../../components/NavBar";
 import "./CalcTables.css";
+import { CalculatorBackLink } from "./CalculatorBackLink";
 import {
   getSecondYearFallSubjects,
   gpaGradeMap,
@@ -9,23 +10,24 @@ import {
   secondYearMajors,
 } from "./secondYearFallData";
 import { UnavailableCalc } from "./UnavailableCalc";
+import { getPriorCourseTotals } from "./priorCourseGpa";
 
-function calculateGpa(subjects, grades) {
-  const totals = subjects.reduce(
+function calculateTotals(subjects, grades) {
+  return subjects.reduce(
     (result, subject) => ({
       credits: result.credits + subject.credits,
       weightedPoints:
-        result.weightedPoints + gpaGradeMap[grades[subject.id]] * subject.credits,
+        result.weightedPoints +
+        gpaGradeMap[grades[subject.id]] * subject.credits,
     }),
     { credits: 0, weightedPoints: 0 },
   );
-
-  return totals.credits === 0 ? 0 : totals.weightedPoints / totals.credits;
 }
 
 function AvailableMajorCalc({ major, year, majorLabel }) {
   const subjects = useMemo(() => getSecondYearFallSubjects(major), [major]);
   const storageKey = `gpaGrades:${major}:${year}:fall`;
+  const [includePreviousCourses, setIncludePreviousCourses] = useState(false);
 
   const [grades, setGrades] = useState(() => {
     const saved = localStorage.getItem(storageKey);
@@ -51,7 +53,16 @@ function AvailableMajorCalc({ major, year, majorLabel }) {
     localStorage.setItem(storageKey, JSON.stringify(grades));
   }, [grades, storageKey]);
 
-  const gpa = calculateGpa(subjects, grades);
+  const currentTotals = calculateTotals(subjects, grades);
+  const gpa = currentTotals.weightedPoints / currentTotals.credits;
+  const priorTotals = includePreviousCourses
+    ? getPriorCourseTotals({ major, year })
+    : null;
+  const cumulativeGpa = priorTotals
+    ? (currentTotals.weightedPoints + priorTotals.weightedPoints) /
+      (currentTotals.credits + priorTotals.credits)
+    : null;
+  const displayedOverallGpa = includePreviousCourses ? cumulativeGpa : gpa;
 
   return (
     <>
@@ -62,6 +73,7 @@ function AvailableMajorCalc({ major, year, majorLabel }) {
       <NavBar />
       <div className="content">
         <div className="center-0 gpa-calculator">
+          <CalculatorBackLink />
           <h1>{majorLabel}, второй курс: Калькулятор GPA</h1>
           <div className="calc-table-wrapper">
             <h2>Осенний семестр</h2>
@@ -102,6 +114,29 @@ function AvailableMajorCalc({ major, year, majorLabel }) {
             </table>
             <div className="gpa-output">GPA: {gpa.toFixed(2)}</div>
           </div>
+          <div className="overall-gpa-section">
+            <div className="gpa-output">
+              Общий GPA:{" "}
+              {displayedOverallGpa === null
+                ? "—"
+                : displayedOverallGpa.toFixed(2)}
+            </div>
+            <label className="cgpa-toggle">
+              <input
+                type="checkbox"
+                checked={includePreviousCourses}
+                onChange={(event) =>
+                  setIncludePreviousCourses(event.target.checked)
+                }
+              />
+              <span>Учитывать GPA за прошлые курсы</span>
+            </label>
+            {includePreviousCourses && priorTotals === null && (
+              <p className="cgpa-message">
+                Сначала сохраните оценки в калькуляторе первого курса.
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </>
@@ -126,4 +161,3 @@ export function MajorCalc() {
     />
   );
 }
-
