@@ -66,6 +66,51 @@
 }
 
 /* Responsive */
+@media (min-width: 981px) {
+  .gpa-calculator > h1 {
+    margin-bottom: 32px;
+    font-size: 2.4rem;
+  }
+
+  .calc-table-wrapper {
+    margin-bottom: 56px;
+  }
+
+  .calc-table-wrapper h2 {
+    margin-bottom: 16px;
+    font-size: 1.75rem;
+  }
+
+  .calc-table {
+    width: min(78%, 960px);
+  }
+
+  .calc-table th {
+    padding: 16px 18px;
+    font-size: 1.12rem;
+  }
+
+  .calc-table td {
+    padding: 14px 18px;
+    font-size: 1.08rem;
+  }
+
+  .calc-table select {
+    padding: 10px 12px;
+    font-size: 1rem;
+  }
+
+  .grade-col {
+    width: 150px;
+  }
+
+  .gpa-output {
+    margin-top: 16px;
+    padding: 13px 18px;
+    font-size: 1.2rem;
+  }
+}
+
 @media (max-width: 980px) {
   .calc-table-wrapper {
     align-items: flex-start;

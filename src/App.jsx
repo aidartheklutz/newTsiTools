@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { HomePage } from "./pages/HomePage/HomePage";
 import GpaCalc from "./pages/GpaCalc/GpaCalc";
 import { FreshmenCalc } from "./pages/GpaCalc/FreshmenCalc";
+import { MajorCalc } from "./pages/GpaCalc/MajorCalc";
 import { ExcuseGen } from "./pages/ExcuseGen/ExcuseGen";
 import { EmailGen } from "./pages/EmailGen/EmailGen";
 import { WordCounter } from "./pages/WordCounter/WordCounter";
@@ -27,6 +28,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="gpa" element={<GpaCalc />} />
         <Route path="gpa/freshmen" element={<FreshmenCalc />} />
+        <Route path="gpa/:major/:year" element={<MajorCalc />} />
         <Route path="excusegen" element={<ExcuseGen />} />;
         <Route path="emailgen" element={<EmailGen />} />;
         <Route path="wordcounter" element={<WordCounter />} />

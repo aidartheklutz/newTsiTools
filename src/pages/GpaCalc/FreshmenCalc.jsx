@@ -139,7 +139,7 @@ export function FreshmenCalc() {
       <meta name="description" content="Первокурсники | Калькулятор GPA"></meta>
       <NavBar />
       <div className="content">
-        <div className="center-0">
+        <div className="center-0 gpa-calculator">
           <h1>Первокурсники: Калькулятор GPA</h1>
           {/* TOTAL */}
           <div className="gpa-output">Общий GPA: {overallGPA.toFixed(2)}</div>
