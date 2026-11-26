@@ -17,6 +17,7 @@ import { GradeConverter } from "./pages/GradeConverter/GradeConverter";
 import { TimeCalc } from "./pages/TimeCalc/TimeCalc";
 import EndTimer from "./pages/EndTimer/EndTimer";
 import NotFound from "./pages/NotFound/NotFound";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 // <Route path='' element={<HomePage />} />
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <Analytics />
+      <ScrollToTop />
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="gpa" element={<GpaCalc />} />
