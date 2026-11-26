@@ -162,7 +162,7 @@ Answer:
 ЗАПРОС ОТ ПОЛЬЗОВАТЕЛЯ:
 `;
 
-const model = "google/gemma-4-26b-a4b-it:free";
+const model = "nvidia/nemotron-3.5-lightning:free";
 
 async function query(data) {
   const response = await fetch(

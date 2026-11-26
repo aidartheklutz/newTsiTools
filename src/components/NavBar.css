@@ -53,6 +53,10 @@
   position: relative;
 }
 
+.nav-mobile-home {
+  display: none;
+}
+
 .navbar-wrapper .nav-menu-button {
   display: inline-flex;
   min-height: 44px;
@@ -191,26 +195,25 @@ body .navbar-wrapper .nav-menu-button:hover:not(:disabled) {
     font-size: 1.35rem;
   }
 
-  .nav-logo p,
-  .nav-menu-button span {
+  .nav-logo p {
     display: none;
   }
 
-  .navbar-wrapper .nav-menu-button {
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-mobile-home {
+    display: grid;
     width: 44px;
-    padding: 9px;
+    height: 44px;
+    place-items: center;
+    color: var(--white);
+    font-size: 1.45rem;
+    text-decoration: none;
   }
 
-  .nav-menu-panel {
-    position: fixed;
-    top: 74px;
-    right: 16px;
-    left: 16px;
-    width: auto;
-    max-height: calc(100vh - 90px);
-  }
-
-  .nav-menu-grid {
-    grid-template-columns: 1fr;
+  .nav-mobile-home:hover {
+    color: var(--link);
   }
 }

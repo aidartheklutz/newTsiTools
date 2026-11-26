@@ -94,6 +94,15 @@ export default function NavBar() {
             </div>
           )}
         </div>
+
+        <NavLink
+          to="/"
+          className="nav-mobile-home"
+          aria-label="Главная"
+          onClick={closeMenu}
+        >
+          <i className="bi bi-house-fill" aria-hidden="true"></i>
+        </NavLink>
       </div>
     </div>
   );
