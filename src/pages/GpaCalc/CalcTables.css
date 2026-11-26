@@ -184,6 +184,28 @@
   color: var(--link);
 }
 
+.cgpa-message-link {
+  color: inherit;
+  font-weight: 700;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition:
+    color 0.2s ease,
+    text-decoration-thickness 0.2s ease;
+}
+
+.cgpa-message-link:hover {
+  color: var(--white);
+  text-decoration-thickness: 0.12em;
+}
+
+.cgpa-message-link:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--white);
+  outline-offset: 3px;
+}
+
 /* Responsive */
 @media (min-width: 981px) {
   .gpa-calculator > h1 {

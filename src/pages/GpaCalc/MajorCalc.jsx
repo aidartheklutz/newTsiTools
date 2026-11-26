@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import NavBar from "../../components/NavBar";
 import "./CalcTables.css";
 import { CalculatorBackLink } from "./CalculatorBackLink";
@@ -133,7 +133,11 @@ function AvailableMajorCalc({ major, year, majorLabel }) {
             </label>
             {includePreviousCourses && priorTotals === null && (
               <p className="cgpa-message">
-                Сначала сохраните оценки в калькуляторе первого курса.
+                Сначала сохраните оценки в{" "}
+                <Link to="/gpa/freshmen" className="cgpa-message-link">
+                  калькуляторе первого курса
+                </Link>
+                .
               </p>
             )}
           </div>
