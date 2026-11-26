@@ -11,6 +11,7 @@ export const studentNames = [
   "Эрнур",
   "Алия",
   "Саид",
+  "Тимур",
   "Бексултан",
   "Дениза",
   "Бегимай",
@@ -21,7 +22,10 @@ export const studentNames = [
   "Амалия",
   "Милана",
   "Айзирек",
-  "Тимур",
+  "Каныкей",
+  "Атай",
+  "Уултан",
+  "Нурислам",
 ];
 
 export function shuffleNames(names) {
