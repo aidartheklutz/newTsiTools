@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import AiLoading from "../../components/AiLoading";
+import AiLimitModal from "../../components/AiLimitModal";
+import { getAiLimitStatus } from "../../components/aiRateLimit";
 import { createQuery } from "../../components/ai";
 import "./ExcuseGen.css";
 
@@ -72,19 +74,31 @@ function QueryInput({
   blockRequest,
   setBlockRequest,
   setOutputLanguage,
+  onLimitReached,
 }) {
   function setInput() {
     setPrompt(event.target.value);
   }
 
   function sendMessage() {
-    if (!blockRequest) {
-      if (prompt != "") {
-        setBlockRequest(true);
-        createQuery(setAiResponse, name, prompt, setBlockRequest, language);
-        setOutputLanguage(language);
-      }
+    if (blockRequest || prompt === "") return;
+
+    const limitStatus = getAiLimitStatus();
+    if (limitStatus.isLimited) {
+      onLimitReached(limitStatus);
+      return;
     }
+
+    setBlockRequest(true);
+    createQuery(
+      setAiResponse,
+      name,
+      prompt,
+      setBlockRequest,
+      language,
+      onLimitReached,
+    );
+    setOutputLanguage(language);
   }
 
   return (
@@ -162,6 +176,7 @@ export function ExcuseGen() {
   const [outputLanguage, setOutputLanguage] = useState("русский");
   const [aiResponse, setAiResponse] = useState(null);
   const [blockRequest, setBlockRequest] = useState(false);
+  const [limitStatus, setLimitStatus] = useState(null);
 
   return (
     <>
@@ -194,6 +209,7 @@ export function ExcuseGen() {
                 blockRequest={blockRequest}
                 setBlockRequest={setBlockRequest}
                 setOutputLanguage={setOutputLanguage}
+                onLimitReached={setLimitStatus}
               />
             </div>
           </div>
@@ -206,6 +222,12 @@ export function ExcuseGen() {
           </div>
         </div>
       </div>
+      {limitStatus?.isLimited && (
+        <AiLimitModal
+          millisecondsLeft={limitStatus.msUntilNextRequest}
+          onClose={() => setLimitStatus(null)}
+        />
+      )}
     </>
   );
 }

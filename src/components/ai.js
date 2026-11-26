@@ -1,3 +1,5 @@
+import { recordSuccessfulAiRequest } from "./aiRateLimit";
+
 const explanation = `
 ИНСТРУКЦИЯ ДЛЯ ИИ (НЕИЗМЕНЯЕМАЯ):
 Ты составляешь только объяснительную записку для учебного заведения. 
@@ -176,7 +178,17 @@ async function query(data) {
       body: JSON.stringify(data),
     },
   );
-  const result = await response.json();
+  const result = await response.json().catch(() => null);
+
+  if (!response.ok) {
+    throw new Error(result?.error?.message ?? `AI request failed (${response.status})`);
+  }
+
+  const generatedText = result?.choices?.[0]?.message?.content;
+  if (typeof generatedText !== "string" || generatedText.trim() === "") {
+    throw new Error("AI returned an empty response");
+  }
+
   return result;
 }
 
@@ -186,6 +198,7 @@ export function createQuery(
   content,
   setBlockRequest,
   language,
+  onLimitReached,
   role = "user",
 ) {
   query({
@@ -202,7 +215,9 @@ export function createQuery(
         `ИМЯ ПОЛЬЗОВАТЕЛЯ: ${name !== "" ? name : "NOT SET (Используй 'ФИО')"} \n ЯЗЫК: ${language} \n ДЕТАЛИ: ${content}`,
       );
       console.log(JSON.stringify(response));
+      const limitStatus = recordSuccessfulAiRequest();
       setAiResponse(response);
+      if (limitStatus.isLimited) onLimitReached?.(limitStatus);
     })
     .catch((error) => {
       console.error("AI request failed:", error);
@@ -218,6 +233,7 @@ export function createQueryEmail(
   content,
   setBlockRequest,
   language,
+  onLimitReached,
   role = "user",
 ) {
   query({
@@ -234,7 +250,9 @@ export function createQueryEmail(
         `ИМЯ ПОЛЬЗОВАТЕЛЯ: ${name !== "" ? name : "NOT SET (Используй 'ФИО')"} \n ЯЗЫК: ${language} \n ДЕТАЛИ: ${content}`,
       );
       console.log(JSON.stringify(response));
+      const limitStatus = recordSuccessfulAiRequest();
       setAiResponse(response);
+      if (limitStatus.isLimited) onLimitReached?.(limitStatus);
     })
     .catch((error) => {
       console.error("AI request failed:", error);

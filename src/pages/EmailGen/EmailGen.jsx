@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import AiLoading from "../../components/AiLoading";
+import AiLimitModal from "../../components/AiLimitModal";
+import { getAiLimitStatus } from "../../components/aiRateLimit";
 import { createQueryEmail } from "../../components/ai";
 import "./EmailGen.css";
 
@@ -70,18 +72,30 @@ function QueryInput({
   setAiResponse,
   blockRequest,
   setBlockRequest,
+  onLimitReached,
 }) {
   function setInput() {
     setPrompt(event.target.value);
   }
 
   function sendMessage() {
-    if (!blockRequest) {
-      if (prompt != "") {
-        setBlockRequest(true);
-        createQueryEmail(setAiResponse, name, prompt, setBlockRequest, language);
-      }
+    if (blockRequest || prompt === "") return;
+
+    const limitStatus = getAiLimitStatus();
+    if (limitStatus.isLimited) {
+      onLimitReached(limitStatus);
+      return;
     }
+
+    setBlockRequest(true);
+    createQueryEmail(
+      setAiResponse,
+      name,
+      prompt,
+      setBlockRequest,
+      language,
+      onLimitReached,
+    );
   }
 
   return (
@@ -197,6 +211,7 @@ export function EmailGen() {
   const [language, setLanguage] = useState("русский");
   const [aiResponse, setAiResponse] = useState(null);
   const [blockRequest, setBlockRequest] = useState(false);
+  const [limitStatus, setLimitStatus] = useState(null);
 
   return (
     <>
@@ -228,6 +243,7 @@ export function EmailGen() {
                 setAiResponse={setAiResponse}
                 blockRequest={blockRequest}
                 setBlockRequest={setBlockRequest}
+                onLimitReached={setLimitStatus}
               />
             </div>
           </div>
@@ -236,6 +252,12 @@ export function EmailGen() {
           </div>
         </div>
       </div>
+      {limitStatus?.isLimited && (
+        <AiLimitModal
+          millisecondsLeft={limitStatus.msUntilNextRequest}
+          onClose={() => setLimitStatus(null)}
+        />
+      )}
     </>
   );
 }
