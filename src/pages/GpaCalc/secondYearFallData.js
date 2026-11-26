@@ -20,7 +20,7 @@ export const secondYearMajors = [
   { slug: "dht", label: "DHT", available: true },
   { slug: "sfht", label: "SFHT", available: true },
   { slug: "ehi", label: "EHI", available: true },
-  { slug: "dmdt", label: "DMDT", available: false },
+  { slug: "dmdt", label: "DMDT", available: true },
   { slug: "ecol", label: "ECOL", available: false },
 ];
 
@@ -33,13 +33,13 @@ const secondYearFallSubjects = [
   },
   {
     id: "english-composition-1",
-    name: "English composition ",
+    name: "English composition 1",
     credits: 6,
     majors: [],
   },
   {
     id: "academic-reading-writing-1",
-    name: "Академическое чтение и письмо",
+    name: "Академическое чтение и письмо 1",
     credits: 3,
     majors: [],
   },
@@ -59,13 +59,19 @@ const secondYearFallSubjects = [
     id: "business-modeling",
     name: "Бизнес-моделирование",
     credits: 3,
-    majors: ["sfht", "ehi"],
+    majors: ["sfht", "ehi", "dmdt"],
   },
   {
     id: "accounting",
     name: "Бухгалтерский учет",
     credits: 4,
     majors: ["sfht"],
+  },
+  {
+    id: "design-thinking",
+    name: "Дизайн-мышление",
+    credits: 4,
+    majors: ["dmdt"],
   },
   {
     id: "fine-art-design",
@@ -107,9 +113,9 @@ const secondYearFallSubjects = [
     id: "linear-algebra-analytic-geometry",
     name: "Линейная алгебра и аналитическая геометрия",
     credits: 6,
-    majors: ["sest", "dmdt", "sfht"],
+    majors: ["sest", "sfht"],
   },
-  { id: "marketing", name: "Маркетинг", credits: 3, majors: ["ehi", "dmdt"] },
+  { id: "marketing", name: "Маркетинг", credits: 3, majors: ["ehi"] },
   {
     id: "math-machine-learning",
     name: "Математика для машинного обучения",
@@ -120,7 +126,7 @@ const secondYearFallSubjects = [
     id: "business-microeconomics",
     name: "Микроэкономика для бизнеса",
     credits: 3,
-    majors: ["sfht", "ehi"],
+    majors: ["sfht", "ehi", "dmdt"],
   },
   {
     id: "object-oriented-programming",
@@ -150,7 +156,7 @@ const secondYearFallSubjects = [
     id: "startup-management",
     name: "Стартап-менеджмент",
     credits: 3,
-    majors: ["sfht", "ehi", "dmdt"],
+    majors: ["sfht", "ehi"],
   },
   {
     id: "screenwriting",
@@ -163,6 +169,12 @@ const secondYearFallSubjects = [
     name: "Управление проектами",
     credits: 3,
     majors: [],
+  },
+  {
+    id: "emotional-learning",
+    name: "Эмоциональное обучение",
+    credits: 3,
+    majors: ["dmdt"],
   },
 ];
 
