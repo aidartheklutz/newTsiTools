@@ -17,6 +17,7 @@ import { GradeConverter } from "./pages/GradeConverter/GradeConverter";
 import { TimeCalc } from "./pages/TimeCalc/TimeCalc";
 import EndTimer from "./pages/EndTimer/EndTimer";
 import NotFound from "./pages/NotFound/NotFound";
+import { DecisionWheel } from "./pages/DecisionWheel/DecisionWheel";
 import { ScrollToTop } from "./components/ScrollToTop";
 
 // <Route path='' element={<HomePage />} />
@@ -38,6 +39,7 @@ function App() {
         <Route path="converter" element={<GradeConverter />} />
         <Route path="timecalc" element={<TimeCalc />} />
         <Route path="countdown" element={<EndTimer />} />
+        <Route path="wheel" element={<DecisionWheel />} />
         <Route path="affirmations" element={<AffirmationsPage />} />
         <Route path="qrgen" element={<QrGen />} />
         <Route path="about" element={<AboutPage />} />

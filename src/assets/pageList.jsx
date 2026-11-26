@@ -26,6 +26,14 @@ export const mainPages = [
   },
   {
     id: crypto.randomUUID(),
+    title: "Колесо решений",
+    icon: <i className="bi bi-record-circle-fill"></i>,
+    description: "Случайно выберите одно имя из списка",
+    file: "DecisionWheel",
+    path: "wheel",
+  },
+  {
+    id: crypto.randomUUID(),
     title: "Конвертер оценок",
     icon: <i className="bi bi-arrow-left-right"></i>,
     description: "Конвертируйте баллы в буквенную оценку",

@@ -24,10 +24,8 @@ const pickNames = [
   "Анжелина",
   "Амалия",
   "Милана",
-  "Чынгыз",
-  "Атай",
-  "Арсланбек",
-  "Айдин",
+  "Айзирек",
+  "Тимур",
 ];
 
 const randomNames = shuffleNames(pickNames).slice(0, 6);
