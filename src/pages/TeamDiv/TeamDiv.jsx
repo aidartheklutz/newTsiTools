@@ -1,51 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import NavBar from "../../components/NavBar";
+import { shuffleNames, studentNames } from "../../assets/studentNames";
 import "./TeamDiv.css";
 
-const pickNames = [
-  "Айдар", // я :3
-  "Кылымдар",
-  "Раяна",
-  "Даниил",
-  "Урмат",
-  "Али",
-  "Даурен",
-  "Айым",
-  "Искендер",
-  "Эрнур",
-  "Алия",
-  "Саид",
-  "Бексултан",
-  "Дениза",
-  "Бегимай",
-  "Жамиля",
-  "Дина",
-  "Влад",
-  "Анжелина",
-  "Амалия",
-  "Милана",
-  "Айзирек",
-  "Тимур",
-];
-
-const randomNames = shuffleNames(pickNames).slice(0, 6);
+const randomNames = shuffleNames(studentNames).slice(0, 6);
 
 function getNames(value) {
   return value
     .split(/\r?\n/)
     .map((name) => name.trim())
     .filter(Boolean);
-}
-
-function shuffleNames(names) {
-  const shuffled = [...names];
-
-  for (let i = shuffled.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-
-  return shuffled;
 }
 
 function splitIntoTeams(names, teamCount) {

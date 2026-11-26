@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import NavBar from "../../components/NavBar";
 import tadaSound from "../../assets/tada.m4a";
+import { shuffleNames, studentNames } from "../../assets/studentNames";
 import "./DecisionWheel.css";
 
 const NAMES_STORAGE_KEY = "decisionWheelNames";
 const COLOR_MODE_STORAGE_KEY = "decisionWheelColorMode";
 const SPIN_DURATION = 4200;
+const placeholderNames = shuffleNames(studentNames).slice(0, 6);
 const COLOR_PALETTE = [
   "#2563eb",
   "#dc2626",
@@ -210,7 +212,7 @@ export function DecisionWheel() {
             className="wheel-names-input"
             value={namesText}
             onChange={(event) => setNamesText(event.target.value)}
-            placeholder={"Айдар\nРаяна\nДаниил\nАйым\nУрмат"}
+            placeholder={placeholderNames.join("\n")}
             disabled={isSpinning}
           />
 
